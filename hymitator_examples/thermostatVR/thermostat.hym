@@ -1,0 +1,22 @@
+var m, M, K, h: parameter;
+
+automaton thermostat
+
+var x : analog;
+	hturn_on, hturn_off: clock;
+
+synclabs: turn_on, turn_off;
+initially ini;
+
+loc l0: while x >= m wait {}
+      when x = m sync turn_on do {x'=x, hturn_on'=0} goto l1;	
+
+loc l1: while x <= M wait {}
+      when x = M sync turn_off do {x'=x, hturn_off'=0} goto l0;
+
+end
+
+var init: region;
+init := loc[thermostat] = l0 & x = M & M = 20 & m = 16 & K = 2 & h = 1 & hturn_off=0 & hturn_on > hturn_off;
+
+domain : x in [0,30];

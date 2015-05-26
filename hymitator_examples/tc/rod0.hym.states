@@ -1,0 +1,54 @@
+/***************************************************
+ * File automatically generated for file '/home/lastefan/Documents/verimag/timed-orch-bip/cav15/efsmt_coverts/hymitator_examples/tc/rod0.hym'
+ * Reachability analysis
+ * 4 states and 4 transitions
+ * Program terminated after 0.003 second
+***************************************************/
+
+/*
+  DESCRIPTION OF THE STATES
+
+
+  STATE 0:
+  Rod0: l10 ==> 
+  hrest0 >= 0
+& T = 6
+& t0 = 6 + hrest0
+& hcool0 = hrest0
+
+
+  STATE 1:
+  Rod0: l20 ==> 
+  hcool0 >= 0
+& hrest0 >= hcool0
+& T = 6
+& t0 = 6 + hrest0
+
+
+  STATE 2:
+  Rod0: l10 ==> 
+  hcool0 >= hrest0
+& hrest0 >= 0
+& T = 6
+& t0 = hrest0
+
+
+  STATE 3:
+  Rod0: l20 ==> 
+  hcool0 >= 0
+& hrest0 >= 6 + hcool0
+& T = 6
+& t0 = hrest0
+*/
+
+digraph G {
+  s0 -> s1 [label="cool0"];
+  s1 -> s2 [label="rest0"];
+  s2 -> s3 [label="cool0"];
+  s3 -> s2 [label="rest0"];
+
+  s0[fillcolor=red, style=filled, shape=Mrecord, label="s0|{l10}"];
+  s1[fillcolor=green, style=filled, shape=Mrecord, label="s1|{l20}"];
+  s2[fillcolor=red, style=filled, shape=Mrecord, label="s2|{l10}"];
+  s3[fillcolor=green, style=filled, shape=Mrecord, label="s3|{l20}"];
+}

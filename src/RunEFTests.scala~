@@ -1,0 +1,16 @@
+package org
+
+object RunEFTests extends ZoneGraphVV {
+
+  def main(args: Array[String]) {
+
+    val modelPath = wd + ptaDir 
+    try {
+      val dir = new java.io.File(modelPath)    
+      dir.listFiles.filter(f => !f.isDirectory).map(f => f.toString).filter(fs => fs.endsWith(".imi")).toList.map{
+	file => 
+      }
+    }
+
+}
+

@@ -1,0 +1,28 @@
+/***************************************************
+ * File automatically generated for file '/home/lastefan/Documents/verimag/timed-orch-bip/cav15/efsmt_coverts/hymitator_examples/Philos2/fork2.hym'
+ * Reachability analysis
+ * 2 states and 2 transitions
+ * Program terminated after 0.001 second
+***************************************************/
+
+/*
+  DESCRIPTION OF THE STATES
+
+
+  STATE 0:
+  Fork2: f20 ==> 
+true
+
+
+  STATE 1:
+  Fork2: f21 ==> 
+true
+*/
+
+digraph G {
+  s0 -> s1 [label="takefork2"];
+  s1 -> s0 [label="releasefork2"];
+
+  s0[fillcolor=red, style=filled, shape=Mrecord, label="s0|{f20}"];
+  s1[fillcolor=green, style=filled, shape=Mrecord, label="s1|{f21}"];
+}

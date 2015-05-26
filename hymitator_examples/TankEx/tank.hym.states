@@ -1,0 +1,141 @@
+/***************************************************
+ * File automatically generated for file 'TankEx/tank.hym'
+ * Reachability analysis
+ * 9 states and 11 transitions
+ * Program terminated after 0.008 second
+***************************************************/
+
+/*
+  DESCRIPTION OF THE STATES
+
+
+  STATE 0:
+  tank: pump_is_on ==> 
+  10 >= w
+& w >= 0
+& delay = 1
+& m = 5
+& M = 10
+& min = 1
+& max = 15
+& w = x
+
+
+  STATE 1:
+  tank: pump_stop ==> 
+  1 >= x
+& x >= 0
+& delay = 1
+& m = 5
+& M = 10
+& min = 1
+& max = 15
+
+
+  STATE 2:
+  tank: pump_is_off ==> 
+  w >= 5
+& x >= 1
+& delay = 1
+& m = 5
+& M = 10
+& min = 1
+& max = 15
+
+
+  STATE 3:
+  tank: error ==> 
+  w > 15
+& x >= 0
+& delay = 1
+& m = 5
+& M = 10
+& min = 1
+& max = 15
+
+
+  STATE 4:
+  tank: pump_start ==> 
+  w >= 3
+& 5 >= w
+& delay = 1
+& m = 5
+& M = 10
+& min = 1
+& max = 15
+& w + 2*x = 5
+& w + 2*xaux = 5
+
+
+  STATE 5:
+  tank: pump_is_on ==> 
+  10 >= w
+& w >= 3
+& delay = 1
+& m = 5
+& M = 10
+& min = 1
+& max = 15
+& w = 2 + x
+& w = 2 + xaux
+
+
+  STATE 6:
+  tank: pump_stop ==> 
+  1 >= x
+& x >= 0
+& delay = 1
+& m = 5
+& M = 10
+& min = 1
+& max = 15
+& x + 8 = xaux
+
+
+  STATE 7:
+  tank: pump_is_off ==> 
+  w >= 5
+& x >= 1
+& delay = 1
+& m = 5
+& M = 10
+& min = 1
+& max = 15
+& x + 8 = xaux
+
+
+  STATE 8:
+  tank: error ==> 
+  w > 15
+& xaux >= 8
+& delay = 1
+& m = 5
+& M = 10
+& min = 1
+& max = 15
+& x + 8 = xaux
+*/
+
+digraph G {
+  s0 -> s1 [label="sig_off"];
+  s1 -> s3 [label="overflow"];
+  s1 -> s2 [label="off"];
+  s2 -> s4 [label="sig_on"];
+  s3 -> s3 [label="err"];
+  s4 -> s5 [label="on"];
+  s5 -> s6 [label="sig_off"];
+  s6 -> s8 [label="overflow"];
+  s6 -> s7 [label="off"];
+  s7 -> s4 [label="sig_on"];
+  s8 -> s8 [label="err"];
+
+  s0[fillcolor=red, style=filled, shape=Mrecord, label="s0|{pump_is_on}"];
+  s1[fillcolor=green, style=filled, shape=Mrecord, label="s1|{pump_stop}"];
+  s2[fillcolor=blue, style=filled, shape=Mrecord, label="s2|{pump_is_off}"];
+  s3[fillcolor=yellow, style=filled, shape=Mrecord, label="s3|{error}"];
+  s4[fillcolor=cyan, style=filled, shape=Mrecord, label="s4|{pump_start}"];
+  s5[fillcolor=red, style=filled, shape=Mrecord, label="s5|{pump_is_on}"];
+  s6[fillcolor=green, style=filled, shape=Mrecord, label="s6|{pump_stop}"];
+  s7[fillcolor=blue, style=filled, shape=Mrecord, label="s7|{pump_is_off}"];
+  s8[fillcolor=yellow, style=filled, shape=Mrecord, label="s8|{error}"];
+}

@@ -1,0 +1,38 @@
+/***************************************************
+ * File automatically generated for file 'thermostatEx/thermostat.hym'
+ * Reachability analysis
+ * 2 states and 2 transitions
+ * Program terminated after 0.009 second
+***************************************************/
+
+/*
+  DESCRIPTION OF THE STATES
+
+
+  STATE 0:
+  thermostat: l0 ==> 
+  x >= 16
+& 20 >= x
+& m = 16
+& M = 20
+& K = 2
+& h = 1
+
+
+  STATE 1:
+  thermostat: l1 ==> 
+  20 >= x
+& x >= 16
+& m = 16
+& M = 20
+& K = 2
+& h = 1
+*/
+
+digraph G {
+  s0 -> s1 [label="turn_on"];
+  s1 -> s0 [label="turn_off"];
+
+  s0[fillcolor=red, style=filled, shape=Mrecord, label="s0|{l0}"];
+  s1[fillcolor=green, style=filled, shape=Mrecord, label="s1|{l1}"];
+}
