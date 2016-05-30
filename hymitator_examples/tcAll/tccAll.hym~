@@ -1,0 +1,55 @@
+var vr0, vr1, m, M, T: parameter;
+
+automaton Controller
+
+var t : analog;
+
+synclabs: cool0, rest0, cool1, rest1;
+
+loc lc1: while t <= M wait {t'=6}
+	when True sync cool0 do {t'=M} goto lc2;
+	when True sync cool1 do {t'=M} goto lc3;
+
+loc lc2: while t >= m wait {t'=-2}
+	when True sync rest0 do {t'=m} goto lc1;
+
+loc lc3: while t >= m wait {t'=-2}
+	when True sync rest1 do {t'=m} goto lc1;
+
+end
+
+automaton Rod0
+
+var	t0: clock;
+
+synclabs: cool0, rest0;
+
+loc l10: while True wait {}
+	when t0 >= T sync cool0 do {} goto l20;
+
+loc l20: while True wait {}
+	when True sync rest0 do {t0'=0} goto l10;
+
+end
+
+automaton Rod1
+
+var	t1: clock;
+
+synclabs: cool1, rest1;
+
+loc l11: while True wait {}
+	when t1 >= T sync cool1 do {} goto l21;
+
+loc l21: while True wait {}
+	when True sync rest1 do {t1'=0} goto l11;
+
+end
+
+var init: region;
+
+init:=	loc[Controller] = lc1 & t = 0 &
+	loc[Rod0] = l10 & t0 = T & 
+	loc[Rod1] = l11  & t1 = T & M = 15 & m = 3 & T = 6
+;
+

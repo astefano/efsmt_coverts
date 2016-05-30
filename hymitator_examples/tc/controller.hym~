@@ -1,0 +1,23 @@
+var vr0, vr1, m, M: parameter;
+
+automaton Controller
+
+var hcool, hheat: clock;
+	t : analog;
+
+synclabs: cool, heat;
+initially ini;
+
+loc lc1: while t <= 900 wait {t'=1}
+	when t = 900 sync cool do {hcool'=0} goto lc2;
+
+loc lc2: while t >= 450 wait {t'=-1}
+	when t = 450 sync heat do {hheat'=0} goto lc1;
+
+end
+
+var init: region;
+
+init:=	loc[Controller] = lc1 & t = 0 & hcool = 0 & hheat = 0
+;
+

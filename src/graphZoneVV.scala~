@@ -41,7 +41,7 @@ case class ZoneGraphVV() extends genZ3EF {
 
   val Kp = "Kp_"
 
-  var DEBUG_LEVEL = 1
+  var DEBUG_LEVEL = 0
 
   def debug(s: String, m: Int = 0) = if (DEBUG_LEVEL > m) println(s)
 

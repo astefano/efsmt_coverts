@@ -23,8 +23,8 @@ object PTAG2EF extends ZoneGraphVV {
     //var ptaDir = "Imitator/Philos2"
     //var ptaDir = "Imitator/abstract8"
     //var ptaDir = "Imitator/abstract2"
-    //var ptaDir = "Imitator/tgc"
-    var ptaDir = "Imitator/tc"
+    var ptaDir = "Imitator/tgc"
+    //var ptaDir = "Imitator/tc"
 
     //var imFile = "interactionModels/philos2.im"
     //var imFile = "interactionModels/abstract8.im"
@@ -32,10 +32,10 @@ object PTAG2EF extends ZoneGraphVV {
 
     //val im = mkIM(wd + imFile)
     def genIM_TGC(n: Int) = List.range(0,n).flatMap{i => List(List("ac", "at_"+i), List("ec", "et_"+i), List("lc", "lg"), List("rc", "rg"), List("epst_"+i))} :+ List("epsg")
-    //val im = genIM_TGC(7).map{_.toSet}.toSet
+    val im = genIM_TGC(16).map{_.toSet}.toSet
 
     def genIM_TC(n: Int) = List.range(0,n).flatMap{i => List(List("coolc", "cool_"+i), List("restc", "rest_0"))} 
-    var im = genIM_TC(32).map{_.toSet}.toSet
+    //var im = genIM_TC(32).map{_.toSet}.toSet
 
     var withHC = true
     //var withHC = false
@@ -169,7 +169,7 @@ object PTAG2EF extends ZoneGraphVV {
     val date = curTimeFormat.format(today)
 
     //val efFile = tasName + "-outEF-" + date
-    val efFile = ptaDir.drop(8) + "-outEF-" + date
+    val efFile = ptaDir.drop(9) + "-outEF-" + date
     write2File(efFile, outEFWithConds)
     
     

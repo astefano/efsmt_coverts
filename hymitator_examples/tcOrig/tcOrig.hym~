@@ -1,0 +1,34 @@
+var delay, m, M, T: parameter;
+
+automaton tc
+
+var t0, t1: clock;
+    t : analog;
+
+synclabs: cool0, cool1, heat0, heat1, err;
+initially ini;
+
+loc l0: while t <= M wait {t' = 6}
+      when t = M & t0 >= T sync cool0 do {t'=t} goto l1;
+      when t = M & t1 >= T sync cool1 do {t'=t} goto l2;
+      when t = M & t1 < T & t0 < T sync err do {t'=t} goto lerr;     	
+
+loc l1: while t >= m wait {t' = -2}
+      when t = m sync heat0 do {t0' = 0, t'=t} goto l0;
+
+loc l2: while t >= m wait {t' = -2}
+      when t = m sync heat1 do {t1' = 0, t'=t} goto l0;
+
+loc lerr: while t <= M wait {t' = 0} 
+      when True sync err do {t'=t} goto lerr;
+
+end
+
+var init: region;
+init := loc[tc] = l0 & t = 0 & t1 = T & t0 = T & M = 15 & m = 3 & T = 6;
+
+
+var bad: region;
+bad := loc[tc] = lerr;
+
+domain : t in [0, 100] & t0 in [0, 100] & t1 in [0, 100];
