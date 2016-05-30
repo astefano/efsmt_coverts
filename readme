@@ -7,6 +7,7 @@ This is a Scala prototype which takes as input components $\cn_i$ of a system as
 ==============
 Requirements: |
 ==============
+
 - Z3 (z3.codeplex.com) 
 - EFSMT (http://www6.in.tum.de/~chengch/efsmt/)
 - IMITATOR (https://github.com/etienneandre/imitator)
@@ -16,6 +17,7 @@ Requirements: |
 =============
 How to test: |
 =============
+
 The main program is PTAG2EF.scala. You can either pass the path to the Imitator files and to the interaction model as arguments or directly modify PTAG2EF.scala itself (examples are commented). Then simply run it from sbt.
 
 
