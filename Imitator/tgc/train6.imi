@@ -1,0 +1,27 @@
+var
+	t0_6, t1_6, t2_6: parameter;
+	x_6: clock;
+
+automaton train_6
+
+synclabs: at_6, et_6, epst_6;
+
+loc far_6: while True wait {}
+	when True sync at_6 do {x_6'=0} goto near_6;
+
+loc near_6: while x_6 <= t0_6 wait {}
+        when x_6 >= t1_6 sync epst_6 do {} goto in_6;
+
+loc in_6: while x_6 <= t2_6 wait {}
+        when True sync et_6 do {} goto far_6;
+
+end
+
+var init: region;
+
+init:=	loc[train_6] = far_6  &	
+	x_6 = 0 
+(* & t0 = 5 & t1 = 3 & t2 = 5*)
+;
+
+

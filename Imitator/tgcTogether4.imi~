@@ -1,0 +1,122 @@
+var
+	t0_3, t1_3, t2_3, t0_2, t1_2, t2_2, t0_1, t1_1, t2_1, t0_0, t1_0, t2_0, c0, c1, c2, g0, g1, g2: parameter;
+	x_3, x_2, x_1, x_0, y, z: clock;
+
+automaton train_3
+
+synclabs: at_3, et_3, epst_3;
+
+loc far_3: while True wait {}
+	when True sync at_3 do {x_3'=0} goto near_3;
+
+loc near_3: while x_3 <= t0_3 wait {}
+        when x_3 >= t1_3 sync epst_3 do {} goto in_3;
+
+loc in_3: while x_3 <= t2_3 wait {}
+        when True sync et_3 do {} goto far_3;
+
+end
+
+automaton train_2
+
+synclabs: at_2, et_2, epst_2;
+
+loc far_2: while True wait {}
+	when True sync at_2 do {x_2'=0} goto near_2;
+
+loc near_2: while x_2 <= t0_2 wait {}
+        when x_2 >= t1_2 sync epst_2 do {} goto in_2;
+
+loc in_2: while x_2 <= t2_2 wait {}
+        when True sync et_2 do {} goto far_2;
+
+end
+
+automaton train_1
+
+synclabs: at_1, et_1, epst_1;
+
+loc far_1: while True wait {}
+	when True sync at_1 do {x_1'=0} goto near_1;
+
+loc near_1: while x_1 <= t0_1 wait {}
+        when x_1 >= t1_1 sync epst_1 do {} goto in_1;
+
+loc in_1: while x_1 <= t2_1 wait {}
+        when True sync et_1 do {} goto far_1;
+
+end
+
+automaton train_0
+
+synclabs: at_0, et_0, epst_0;
+
+loc far_0: while True wait {}
+	when True sync at_0 do {x_0'=0} goto near_0;
+
+loc near_0: while x_0 <= t0_0 wait {}
+        when x_0 >= t1_0 sync epst_0 do {} goto in_0;
+
+loc in_0: while x_0 <= t2_0 wait {}
+        when True sync et_0 do {} goto far_0;
+
+end
+
+automaton controller
+
+synclabs: at_0, at_1, at_2, at_3, at_4, et_0, et_1, et_2, et_3, et_4, lc, rc;
+
+loc C0: while True wait {}
+	when True sync at_0 do {z'=0} goto C1;
+	when True sync at_1 do {z'=0} goto C1;
+	when True sync at_2 do {z'=0} goto C1;
+	when True sync at_3 do {z'=0} goto C1;
+	when True sync at_4 do {z'=0} goto C1;
+
+loc C1: while z <= c0 wait {}
+        when z = c1 sync lc do {} goto C2;
+
+loc C2: while True wait {}
+        when True sync et_0 do {z'=0} goto C3;
+        when True sync et_1 do {z'=0} goto C3;
+        when True sync et_2 do {z'=0} goto C3;
+        when True sync et_3 do {z'=0} goto C3;
+        when True sync et_4 do {z'=0} goto C3;
+
+loc C3: while z <= c2 wait {}
+        when True sync rc do {} goto C0;
+end
+
+automaton gate
+
+synclabs: lc, epsg, rc;
+
+loc is_up: while True wait {}
+	when True sync lc do {y'=0} goto coming_down;
+
+loc coming_down: while y <= g0 wait {}
+        when True sync epsg do {} goto is_down;
+
+loc is_down: while True wait {}
+        when True sync rc do {y'=0} goto going_up;
+
+loc going_up: while y <= g1 wait {}
+        when y >= g2 sync epsg do {} goto is_up;
+end
+
+var init: region;
+
+init:=	loc[train_3] = far_3  &	
+	x_3 = 0 &
+	loc[train_2] = far_2  &	
+	x_2 = 0 &
+	loc[train_1] = far_1  &	
+	x_1 = 0 &
+	loc[train_0] = far_0  &	
+	x_0 = 0 &
+	loc[gate] = is_up  &	
+	y = 0 &
+	loc[controller] = C0  &	
+	z = 0 
+;
+

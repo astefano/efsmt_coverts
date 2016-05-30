@@ -1,0 +1,5 @@
+#!/bin/bash
+for i in `seq 1 16`;
+do
+	sed "s/_0/_$i/g" rod0.imi > rod$i.imi
+done

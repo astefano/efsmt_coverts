@@ -1,0 +1,63 @@
+var
+	t0_0, t1_0, t2_0, c0, c1, c2, g0, g1, g2: parameter;
+	x_0, y, z: clock;
+
+automaton train_0
+
+synclabs: at_0, et_0, epst_0;
+
+loc far_0: while True wait {}
+	when True sync at_0 do {x_0'=0} goto near_0;
+
+loc near_0: while x_0 <= t0_0 wait {}
+        when x_0 >= t1_0 sync epst_0 do {} goto in_0;
+
+loc in_0: while x_0 <= t2_0 wait {}
+        when True sync et_0 do {} goto far_0;
+
+end
+
+automaton controller
+
+synclabs: at_0, et_0, lc, rc;
+
+loc C0: while True wait {}
+	when True sync at_0 do {z'=0} goto C1;
+
+loc C1: while z <= c0 wait {}
+        when z = c1 sync lc do {} goto C2;
+
+loc C2: while True wait {}
+        when True sync et_0 do {z'=0} goto C3;
+
+loc C3: while z <= c2 wait {}
+        when True sync rc do {} goto C0;
+end
+
+automaton gate
+
+synclabs: lc, epsg, rc;
+
+loc is_up: while True wait {}
+	when True sync lc do {y'=0} goto coming_down;
+
+loc coming_down: while y <= g0 wait {}
+        when True sync epsg do {} goto is_down;
+
+loc is_down: while True wait {}
+        when True sync rc do {y'=0} goto going_up;
+
+loc going_up: while y <= g1 wait {}
+        when y >= g2 sync epsg do {} goto is_up;
+end
+
+var init: region;
+
+init:=  loc[train_0] = far_0  &	
+	x_0 = 0 &
+	loc[gate] = is_up  &	
+	y = 0 &
+	loc[controller] = C0  &	
+	z = 0 
+;
+

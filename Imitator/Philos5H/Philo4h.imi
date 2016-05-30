@@ -1,0 +1,29 @@
+var
+	alpha4, beta4, gamma4, eta4: parameter;
+	t4, hreleasephio4, heatphio4, hendphio4, htakeleftphio4, ts4: clock;
+
+
+automaton Philo4h
+
+synclabs: takeleftphio4, eatphio4, releasephio4, endphio4;
+
+loc p41: while gamma4 - t4 >= 0 wait {}
+		 when t4 - eta4 <= 0 sync takeleftphio4 do {t4' = 0, htakeleftphio4' = 0} goto p42;
+
+loc p42: while -t4 >= -9 wait {}
+		 when t4 <= 7 sync eatphio4 do {t4' = 0, heatphio4' = 0} goto p43;
+
+loc p43: while -t4 >= -8 wait {}
+		 when t4 <= 3 sync releasephio4 do {hreleasephio4' = 0} goto p40;
+
+loc p40: while alpha4 - t4 >= 0 wait {}
+		 when ts4 - beta4 <= 0 sync endphio4 do {t4' = 0, ts4' = 0, hendphio4' = 0} goto p41;
+
+end
+
+
+var init: region;
+
+init:= loc[Philo4h] = p41
+		 & alpha4 = 0 & beta4 = 0 & heatphio4 = 0 & t4 = 0 & hreleasephio4 = 0 & gamma4 = 0 & eta4 = 0 & htakeleftphio4 = 0 & hendphio4 = 0 & ts4 = 0
+;

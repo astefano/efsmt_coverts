@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="ivy-report.xsl"?>
+<ivy-report version="1.0">
+	<info
+		organisation="org"
+		module="efsmt_coverts"
+		revision="0.1"
+		conf="test-internal"
+		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom, scala-tool"
+		date="20160502130126"/>
+	<dependencies>
+		<module organisation="com.github.scala-incubator.io" name="scala-io-file_2.10">
+			<revision name="0.4.2" status="release" pubdate="20130123082132" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://jesseeichar.github.com/scala-io-doc/index.html" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="3">
+				<license name="Scala License" url="http://www.scala-lang.org/node/146"/>
+				<metadata-artifact status="no" details="" size="2953" time="0" location="/home/lacra/.ivy2/cache/com.github.scala-incubator.io/scala-io-file_2.10/ivy-0.4.2.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/github/scala-incubator/io/scala-io-file_2.10/0.4.2/scala-io-file_2.10-0.4.2.pom"/>
+				<caller organisation="org" name="efsmt_coverts" conf="test-internal, test, optional, compile, provided, runtime" rev="0.4.2" rev-constraint-default="0.4.2" rev-constraint-dynamic="0.4.2" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="scala-io-file_2.10" type="jar" ext="jar" status="no" details="" size="437576" time="0" location="/home/lacra/.ivy2/cache/com.github.scala-incubator.io/scala-io-file_2.10/jars/scala-io-file_2.10-0.4.2.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/github/scala-incubator/io/scala-io-file_2.10/0.4.2/scala-io-file_2.10-0.4.2.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.github.scala-incubator.io" name="scala-io-core_2.10">
+			<revision name="0.4.2" status="release" pubdate="20130123082148" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://jesseeichar.github.com/scala-io-doc/index.html" downloaded="false" searched="false" default="false" conf="compile, master(*), runtime, compile(*), runtime(*), master" position="4">
+				<license name="Scala License" url="http://www.scala-lang.org/node/146"/>
+				<metadata-artifact status="no" details="" size="2930" time="0" location="/home/lacra/.ivy2/cache/com.github.scala-incubator.io/scala-io-core_2.10/ivy-0.4.2.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/github/scala-incubator/io/scala-io-core_2.10/0.4.2/scala-io-core_2.10-0.4.2.pom"/>
+				<caller organisation="com.github.scala-incubator.io" name="scala-io-file_2.10" conf="default, compile, runtime, master" rev="0.4.2" rev-constraint-default="0.4.2" rev-constraint-dynamic="0.4.2" callerrev="0.4.2"/>
+				<artifacts>
+					<artifact name="scala-io-core_2.10" type="jar" ext="jar" status="no" details="" size="1295513" time="0" location="/home/lacra/.ivy2/cache/com.github.scala-incubator.io/scala-io-core_2.10/jars/scala-io-core_2.10-0.4.2.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/github/scala-incubator/io/scala-io-core_2.10/0.4.2/scala-io-core_2.10-0.4.2.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.jsuereth" name="scala-arm_2.10">
+			<revision name="1.3" status="release" pubdate="20130121180254" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://jsuereth.com/scala-arm" downloaded="false" searched="false" default="false" conf="compile, master(*), runtime, compile(*), runtime(*), master" position="5">
+				<license name="BSD-style" url="http://www.opensource.org/licenses/bsd-license.php"/>
+				<metadata-artifact status="no" details="" size="2981" time="0" location="/home/lacra/.ivy2/cache/com.jsuereth/scala-arm_2.10/ivy-1.3.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/jsuereth/scala-arm_2.10/1.3/scala-arm_2.10-1.3.pom"/>
+				<caller organisation="com.github.scala-incubator.io" name="scala-io-core_2.10" conf="compile, runtime" rev="1.3" rev-constraint-default="1.3" rev-constraint-dynamic="1.3" callerrev="0.4.2"/>
+				<artifacts>
+					<artifact name="scala-arm_2.10" type="jar" ext="jar" status="no" details="" size="75459" time="0" location="/home/lacra/.ivy2/cache/com.jsuereth/scala-arm_2.10/jars/scala-arm_2.10-1.3.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/jsuereth/scala-arm_2.10/1.3/scala-arm_2.10-1.3.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.scalatest" name="scalatest_2.9.1">
+			<revision name="1.6.1" status="release" pubdate="20110831171259" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.scalatest.org" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="2">
+				<license name="the Apache License, ASL Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
+				<metadata-artifact status="no" details="" size="4276" time="0" location="/home/lacra/.ivy2/cache/org.scalatest/scalatest_2.9.1/ivy-1.6.1.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/scalatest/scalatest_2.9.1/1.6.1/scalatest_2.9.1-1.6.1.pom"/>
+				<caller organisation="org" name="efsmt_coverts" conf="test-internal, test, optional, compile, provided, runtime" rev="1.6.1" rev-constraint-default="1.6.1" rev-constraint-dynamic="1.6.1" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="scalatest_2.9.1" type="jar" ext="jar" status="no" details="" size="2704854" time="0" location="/home/lacra/.ivy2/cache/org.scalatest/scalatest_2.9.1/jars/scalatest_2.9.1-1.6.1.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/scalatest/scalatest_2.9.1/1.6.1/scalatest_2.9.1-1.6.1.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="commons-lang" name="commons-lang">
+			<revision name="2.6" status="release" pubdate="20110116232147" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://commons.apache.org/lang/" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="1">
+				<metadata-artifact status="no" details="" size="6390" time="0" location="/home/lacra/.ivy2/cache/commons-lang/commons-lang/ivy-2.6.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/commons-lang/commons-lang/2.6/commons-lang-2.6.pom"/>
+				<caller organisation="org" name="efsmt_coverts" conf="test-internal, test, optional, compile, provided, runtime" rev="2.6" rev-constraint-default="2.6" rev-constraint-dynamic="2.6" callerrev="0.1"/>
+				<artifacts>
+					<artifact name="commons-lang" type="jar" ext="jar" status="no" details="" size="284220" time="0" location="/home/lacra/.ivy2/cache/commons-lang/commons-lang/jars/commons-lang-2.6.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/commons-lang/commons-lang/2.6/commons-lang-2.6.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.scala-lang" name="scala-library">
+			<revision name="2.10.4" status="release" pubdate="20140318224629" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.scala-lang.org/" extra-info.apiURL="http://www.scala-lang.org/api/2.10.4/" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master, master(*), compile(*), runtime(*)" position="0">
+				<license name="BSD-like" url="http://www.scala-lang.org/downloads/license.html          "/>
+				<metadata-artifact status="no" details="" size="2487" time="0" location="/home/lacra/.ivy2/cache/org.scala-lang/scala-library/ivy-2.10.4.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/scala-lang/scala-library/2.10.4/scala-library-2.10.4.pom"/>
+				<caller organisation="org" name="efsmt_coverts" conf="test-internal, test, optional, compile, provided, runtime" rev="2.10.4" rev-constraint-default="2.10.4" rev-constraint-dynamic="2.10.4" callerrev="0.1"/>
+				<caller organisation="com.jsuereth" name="scala-arm_2.10" conf="compile, runtime" rev="2.10.0" rev-constraint-default="2.10.0" rev-constraint-dynamic="2.10.0" callerrev="1.3"/>
+				<caller organisation="org.scalatest" name="scalatest_2.9.1" conf="default, compile, runtime, master" rev="2.9.1" rev-constraint-default="2.9.1" rev-constraint-dynamic="2.9.1" callerrev="1.6.1"/>
+				<caller organisation="com.github.scala-incubator.io" name="scala-io-file_2.10" conf="default, compile, runtime, master" rev="2.10.0" rev-constraint-default="2.10.0" rev-constraint-dynamic="2.10.0" callerrev="0.4.2"/>
+				<caller organisation="com.github.scala-incubator.io" name="scala-io-core_2.10" conf="compile, runtime" rev="2.10.0" rev-constraint-default="2.10.0" rev-constraint-dynamic="2.10.0" callerrev="0.4.2"/>
+				<artifacts>
+					<artifact name="scala-library" type="jar" ext="jar" status="no" details="" size="7126372" time="0" location="/home/lacra/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.10.4.jar">
+						<origin-location is-local="false" location="UNKNOWN"/>
+					</artifact>
+				</artifacts>
+			</revision>
+			<revision name="2.10.0" evicted="latest-revision" evicted-reason="" downloaded="false" searched="false" conf="compile, master(*), runtime, compile(*), runtime(*), master" position="-1">
+				<evicted-by rev="2.10.4"/>
+				<caller organisation="com.jsuereth" name="scala-arm_2.10" conf="compile, runtime" rev="2.10.0" rev-constraint-default="2.10.0" rev-constraint-dynamic="2.10.0" callerrev="1.3"/>
+				<caller organisation="com.github.scala-incubator.io" name="scala-io-core_2.10" conf="compile, runtime" rev="2.10.0" rev-constraint-default="2.10.0" rev-constraint-dynamic="2.10.0" callerrev="0.4.2"/>
+				<caller organisation="com.github.scala-incubator.io" name="scala-io-file_2.10" conf="default, compile, runtime, master" rev="2.10.0" rev-constraint-default="2.10.0" rev-constraint-dynamic="2.10.0" callerrev="0.4.2"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+			<revision name="2.9.1" evicted="latest-revision" evicted-reason="" downloaded="false" searched="false" conf="compile, master(*), runtime, compile(*), runtime(*), master" position="-1">
+				<evicted-by rev="2.10.4"/>
+				<caller organisation="org.scalatest" name="scalatest_2.9.1" conf="default, compile, runtime, master" rev="2.9.1" rev-constraint-default="2.9.1" rev-constraint-dynamic="2.9.1" callerrev="1.6.1"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+		</module>
+	</dependencies>
+</ivy-report>

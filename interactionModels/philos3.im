@@ -1,0 +1,19 @@
+eatphio1 , takefork2 
+
+eatphio2 , takefork3
+
+eatphio3 , takefork1
+
+takeleftphio1 , takefork1
+
+takeleftphio2 , takefork2
+
+takeleftphio3 , takefork3
+
+endphio1 , endphio2, endphio3
+
+releasephio1 , releasefork1 , releasefork2
+
+releasephio2 , releasefork2 , releasefork3
+
+releasephio3 , releasefork3 , releasefork1

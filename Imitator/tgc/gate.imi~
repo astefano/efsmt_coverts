@@ -1,0 +1,31 @@
+var
+	g0, g1, g2: parameter;
+	y: clock;
+
+automaton gate
+
+synclabs: lg, eps, rg;
+
+loc is_up: while True wait {}
+	when True sync lg do {y'=0} goto coming_down;
+
+loc coming_down: while y <= g0 wait {}
+        when True sync eps do {} goto is_down;
+
+loc is_down: while True wait {}
+        when True sync rg do {y'=0} goto going_up;
+
+loc going_up: while y <= g1 wait {}
+        when y >= g2 sync eps do {} goto is_up;
+end
+
+var init: region;
+
+init:=	loc[gate] = is_up  &	
+	y = 0 
+        & g0 = 1 & g2 = 1 
+(* & g0 = 1 & g1 = 2 & g2 = 1*)
+
+;
+
+

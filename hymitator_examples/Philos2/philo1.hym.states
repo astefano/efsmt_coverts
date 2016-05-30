@@ -1,0 +1,114 @@
+/***************************************************
+ * File automatically generated for file '/home/lastefan/Documents/verimag/timed-orch-bip/cav15/efsmt_coverts/hymitator_examples/Philos2/philo1.hym'
+ * Reachability analysis
+ * 8 states and 8 transitions
+ * Program terminated after 0.005 second
+***************************************************/
+
+/*
+  DESCRIPTION OF THE STATES
+
+
+  STATE 0:
+  Philo1: p11 ==> 
+  gamma1 >= ts1
+& ts1 >= 0
+& ts1 = t1
+
+
+  STATE 1:
+  Philo1: p12 ==> 
+  3 >= t1
+& gamma1 + t1 >= ts1
+& ts1 >= t1
+& t1 >= 0
+& ts1 >= eta1 + t1
+
+
+  STATE 2:
+  Philo1: p13 ==> 
+  3 >= t1
+& gamma1 >= 0
+& gamma1 + t1 + 3 >= ts1
+& gamma1 >= eta1
+& ts1 >= 2 + t1
+& t1 >= 0
+& ts1 >= 2 + eta1 + t1
+
+
+  STATE 3:
+  Philo1: p10 ==> 
+  alpha1 >= t1
+& gamma1 >= 0
+& gamma1 + t1 + 3 >= ts1
+& gamma1 >= eta1
+& ts1 >= 2 + t1
+& t1 >= 2
+& ts1 >= 2 + eta1 + t1
+
+
+  STATE 4:
+  Philo1: p11 ==> 
+  alpha1 >= 2
+& alpha1 + gamma1 + 3 >= beta1
+& gamma1 >= ts1
+& gamma1 >= eta1
+& ts1 >= 0
+& ts1 = t1
+
+
+  STATE 5:
+  Philo1: p12 ==> 
+  3 >= t1
+& alpha1 >= 2
+& alpha1 + gamma1 + 3 >= beta1
+& gamma1 + t1 >= ts1
+& ts1 >= t1
+& t1 >= 0
+& ts1 >= eta1 + t1
+
+
+  STATE 6:
+  Philo1: p13 ==> 
+  3 >= t1
+& alpha1 >= 2
+& alpha1 + gamma1 + 3 >= beta1
+& gamma1 >= 0
+& gamma1 + t1 + 3 >= ts1
+& gamma1 >= eta1
+& ts1 >= 2 + t1
+& t1 >= 0
+& ts1 >= 2 + eta1 + t1
+
+
+  STATE 7:
+  Philo1: p10 ==> 
+  alpha1 >= t1
+& alpha1 + gamma1 + 3 >= beta1
+& gamma1 >= 0
+& gamma1 + t1 + 3 >= ts1
+& gamma1 >= eta1
+& ts1 >= 2 + t1
+& t1 >= 2
+& ts1 >= 2 + eta1 + t1
+*/
+
+digraph G {
+  s0 -> s1 [label="takeleftphio1"];
+  s1 -> s2 [label="eatphio1"];
+  s2 -> s3 [label="releasephio1"];
+  s3 -> s4 [label="endphio1"];
+  s4 -> s5 [label="takeleftphio1"];
+  s5 -> s6 [label="eatphio1"];
+  s6 -> s7 [label="releasephio1"];
+  s7 -> s4 [label="endphio1"];
+
+  s0[fillcolor=red, style=filled, shape=Mrecord, label="s0|{p11}"];
+  s1[fillcolor=green, style=filled, shape=Mrecord, label="s1|{p12}"];
+  s2[fillcolor=blue, style=filled, shape=Mrecord, label="s2|{p13}"];
+  s3[fillcolor=yellow, style=filled, shape=Mrecord, label="s3|{p10}"];
+  s4[fillcolor=red, style=filled, shape=Mrecord, label="s4|{p11}"];
+  s5[fillcolor=green, style=filled, shape=Mrecord, label="s5|{p12}"];
+  s6[fillcolor=blue, style=filled, shape=Mrecord, label="s6|{p13}"];
+  s7[fillcolor=yellow, style=filled, shape=Mrecord, label="s7|{p10}"];
+}

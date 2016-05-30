@@ -1,0 +1,23 @@
+var
+	r: parameter;
+	y, hc, ha2: clock;
+
+
+automaton C2h
+
+synclabs: c, a2;
+
+loc c20: while -y >= -5 wait {}
+		 when -r + y >= 0 sync c do {y' = 0, hc' = 0} goto c21;
+
+loc c21: while -y >= -3 wait {}
+		 when True sync a2 do {y' = 0, ha2' = 0} goto c20;
+
+end
+
+
+var init: region;
+
+init:= loc[C2h] = c20
+		 & y = 0 & hc = 0 & ha2 = 0
+;

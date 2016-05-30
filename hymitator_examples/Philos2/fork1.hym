@@ -1,0 +1,31 @@
+var
+
+automaton Fork1
+
+synclabs: takefork1, releasefork1;
+initially ini;
+
+loc f10: while True wait {}
+	when True sync takefork1 do {} goto f11;
+
+loc f11: while True wait {}
+	when True sync releasefork1 do {} goto f10;
+
+end
+
+var init: region;
+
+init:=	loc[Fork1] = f10 
+;
+
+-- var bad: region;
+-- bad := loc[tank] = error;
+
+
+-- predicates: w < 9, w < 10, w > 0, w > 2, x <= 0, x >= 0;
+-- predicates: w < 10, w > 0, w > 2, x <= 0, x >= 0;
+-- predicates: x <= 0, 2*w >= 17 + 2*x;
+-- predicates: w >= 4, 2*w >= 17 + 2*x;
+
+-- domain    : x in [0,100] & xaux in [0, 100] & w in [0,100] & delay in [0,10] & M in [0,100] & m in [0,100];
+

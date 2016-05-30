@@ -1,0 +1,45 @@
+
+Assumption([ha1 == ha2])
+
+
+
+Assumption([y >= 0])
+Assumption([hc >= 0])
+Assumption([ha2 >= 0])
+
+Forall(hc) REAL
+Forall(c21) 
+Exists(r) INT
+Forall(c20) 
+Forall(y) REAL
+Forall(ha2) REAL
+
+
+Assumption( c20  && [ 5 >= y] && [ y >= 0] && [ y == hc] && [ y == ha2] ||  c21  && [ 3 >= y] && [ y >= 0] && [ y + 5 >= ha2] && [ ha2 >= y] && [ ha2 >= r + y] && [ y == hc] ||  c20  && [ 5 >= y] && [ hc >= y] && [ y >= 0] && [ y + 3 >= hc] && [ 5 >= r] && [ y == ha2])
+Assumption([ha1 == ha2])
+
+
+Forall(hb) REAL
+Exists(q) INT
+Forall(ha1) REAL
+Forall(x) REAL
+Forall(c11) 
+Forall(c10) 
+
+Assumption([x >= 0])
+Assumption([hb >= 0])
+Assumption([ha1 >= 0])
+
+
+
+Assumption( c10  && [ 7 >= x] && [ x >= 0] && [ x == hb] && [ x == ha1] ||  c11  && [ 10 >= x] && [ x >= hb] && [ hb >= 0] && [ hb + 7 >= x] && [ x >= q + hb] && [ x == ha1] ||  c10  && [ 7 >= x] && [ hb >= x] && [ x >= 0] && [ x + 10 >= hb] && [ 7 >= q] && [ x + 10 >= q + hb] && [ x == ha1])
+
+%abstract reach
+Assumption(c20 && c10 || c20 && c11 || c21 && c10 || c21 && c11 || c20 && c10) 
+
+Guarantee(c20 && c10 && [r - y + 0 <= 0] && [ y <= 5] && [ x <= 7] || c20 && c11 && [r - y + 0 <= 0] && [ y <= 5] && [ x <= 10] || c21 && c10 && [q - x + 0 <= 0] && [ y <= 3] && [ x <= 7] || c21 &&  c11 && [y <= 3] && [ x <= 10] || c20 && c10 && [q - x + 0 <= 0] && [ y <= 5] && [ x <= 7])
+
+
+
+Condition([r >= 0])
+Condition([q >= 0])

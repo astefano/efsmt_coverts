@@ -1,0 +1,18 @@
+var
+
+automaton Fork2
+
+synclabs: takefork2, releasefork2;
+
+loc f20: while True wait {}
+	when True sync takefork2 do {} goto f21;
+
+loc f21: while True wait {}
+	when True sync releasefork2 do {} goto f20;
+
+end
+
+var init: region;
+
+init:=	loc[Fork2] = f20 
+;

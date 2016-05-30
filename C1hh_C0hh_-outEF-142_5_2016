@@ -1,0 +1,45 @@
+
+Assumption([hc0 == hc1])
+
+
+Forall(hb) REAL
+
+Assumption([y >= 0])
+Assumption([hb >= 0])
+Assumption([hc1 >= 0])
+
+Forall(c11) 
+Forall(c10) 
+Exists(r) INT
+Forall(hc1) REAL
+Forall(y) REAL
+
+
+Assumption( c10  && [ 3 >= y] && [ y >= 0] && [ y == hb] && [ y == hc1] ||  c11  && [ 3 >= y] && [ y >= 0] && [ y + 3 >= hc1] && [ hc1 >= y] && [ hc1 >= r + y] && [ y == hb] ||  c10  && [ 3 >= y] && [ hb >= y] && [ y >= 0] && [ y + 3 >= hb] && [ 3 >= r] && [ y == hc1])
+Assumption([hc0 == hc1])
+
+
+Exists(q) INT
+Forall(c00) 
+Forall(c01) 
+
+Assumption([x >= 0])
+Assumption([ha >= 0])
+Assumption([hc0 >= 0])
+
+Forall(x) REAL
+Forall(ha) REAL
+Forall(hc0) REAL
+
+
+Assumption( c00  && [ 7 >= x] && [ x >= 0] && [ x == ha] && [ x == hc0] ||  c01  && [ 10 >= x] && [ x >= ha] && [ ha >= 0] && [ ha + 7 >= x] && [ x >= q + ha] && [ x == hc0] ||  c00  && [ 7 >= x] && [ ha >= x] && [ x >= 0] && [ x + 10 >= ha] && [ 7 >= q] && [ x + 10 >= q + ha] && [ x == hc0])
+
+%abstract reach
+Assumption(c11 && c01 || c10 && c00 || c10 && c01 || c10 && c00 || c11 && c00) 
+
+Guarantee(c11 &&  c01 && [y <= 3] && [ x <= 10] || c10 && c00 && [q - x + 0 <= 0] && [ y <= 3] && [ x <= 7] || c10 && c01 && [r - y + 0 <= 0] && [ y <= 3] && [ x <= 10] || c10 && c00 && [r - y + 0 <= 0] && [ y <= 3] && [ x <= 7] || c11 && c00 && [q - x + 0 <= 0] && [ y <= 3] && [ x <= 7])
+
+
+
+Condition([r >= 0])
+Condition([q >= 0])

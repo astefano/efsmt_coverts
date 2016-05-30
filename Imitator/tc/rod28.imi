@@ -1,0 +1,24 @@
+var
+	ct: parameter;
+	x_28: clock;
+
+automaton Rod_28
+
+synclabs: cool_28, rest_28;
+
+loc l0_28: while True wait {}
+        when x_28 >= ct sync cool_28 do {} goto l1_28;
+
+loc l1_28: while True wait {}
+        when True sync rest_28 do {x_28'=0} goto l0_28;
+
+end
+
+var init: region;
+
+init:=	loc[Rod_28] = l0_28  &	
+	x_28 = ct 
+(* ct = 900N *)
+;
+
+

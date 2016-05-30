@@ -1,0 +1,31 @@
+
+Forall(c21)
+
+Assumption([THEORY0])
+Exists(r) INT
+
+Forall(c21)
+
+Forall(c20)
+
+Forall(y) REAL
+
+Assumption( c20  > (([ THEORY1] & [ THEORY2]) | ([ THEORY3] & [ THEORY4] & [ THEORY5])))
+Assumption( c21  > [ THEORY6] & [ THEORY7] & [ THEORY8])
+Exists(q) INT
+
+Assumption([THEORY9])
+Forall(x) REAL
+
+Forall(c11)
+
+Forall(c10)
+
+Assumption( c10  > (([ THEORY10] & [ THEORY11]) | ([ THEORY12] & [ THEORY13] & [ THEORY14])))
+Assumption( c11  > [ THEORY15] & [ THEORY16] & [ THEORY17] & [ THEORY18])
+%abstract reach
+
+Assumption(c20 & c10 | c20 & c11 | c21 & c10 | c21 & c11 | c20 & c10)
+Guarantee(c20 & c10 & [THEORY19] & [ THEORY20] & [ THEORY21] | c20 & c11 & [THEORY22] & [ THEORY23] & [ THEORY24] | c21 & c10 & [THEORY25] & [ THEORY26] & [ THEORY27] | c21 &  c11 & [THEORY28] & [ THEORY29] | c20 & c10 & [THEORY30] & [ THEORY31] & [ THEORY32])
+Condition([THEORY33])
+Condition([THEORY34])

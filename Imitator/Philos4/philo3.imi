@@ -1,0 +1,29 @@
+var
+	alpha3, beta3, gamma3, eta3: parameter;
+	ts3, t3: clock;
+
+automaton Philo3
+
+synclabs: takeleftphio3, eatphio3, releasephio3, endphio3;
+
+loc p31: while t3 <= gamma3 wait {}
+	when t3 >= eta3 sync takeleftphio3 do {t3'=0} goto p32;
+
+loc p32: while t3 <= 7 wait {}
+	when t3 >= 4 sync eatphio3 do {t3'=0} goto p33;
+
+loc p33: while t3 <= 5 wait {}
+	when t3 >= 2 sync releasephio3 do {} goto p30;
+
+loc p30: while t3 <= alpha3 wait {}
+	when ts3 >= beta3 sync endphio3 do {t3'=0,ts3'=0} goto p31;
+
+end
+
+var init: region;
+
+init:=	loc[Philo3] = p31  &	
+	t3 = 0 &
+	ts3 = 0 
+;
+

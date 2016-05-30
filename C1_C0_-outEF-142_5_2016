@@ -1,0 +1,33 @@
+
+
+
+Assumption([y >= 0])
+
+Forall(c11) 
+Forall(c10) 
+Exists(r) INT
+Forall(y) REAL
+
+
+Assumption( c10  && [ 3 >= y] && [ y >= 0] ||  c11  && [ 3 >= y] && [ y >= 0] && [ 3 >= r] ||  c10  && [ 3 >= y] && [ y >= 0] && [ 3 >= r])
+
+Exists(q) INT
+Forall(c00) 
+Forall(c01) 
+
+Assumption([x >= 0])
+
+Forall(x) REAL
+
+
+Assumption( c00  && [ 7 >= x] && [ x >= 0] ||  c01  && [ 10 >= x] && [ x >= 0] && [ x >= q] && [ 7 >= q] ||  c00  && [ 7 >= x] && [ x >= 0] && [ 7 >= q])
+
+%abstract reach
+Assumption(c11 && c01 || c10 && c00 || c10 && c01 || c10 && c00 || c11 && c00) 
+
+Guarantee(c11 &&  c01 && [y <= 3] && [ x <= 10] || c10 && c00 && [q - x + 0 <= 0] && [ y <= 3] && [ x <= 7] || c10 && c01 && [r - y + 0 <= 0] && [ y <= 3] && [ x <= 10] || c10 && c00 && [r - y + 0 <= 0] && [ y <= 3] && [ x <= 7] || c11 && c00 && [q - x + 0 <= 0] && [ y <= 3] && [ x <= 7])
+
+
+
+Condition([r >= 0])
+Condition([q >= 0])

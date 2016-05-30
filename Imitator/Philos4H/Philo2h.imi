@@ -1,0 +1,29 @@
+var
+	alpha2, beta2, gamma2, eta2: parameter;
+	hendphio2, ts2, t2, hreleasephio2, htakeleftphio2, heatphio2: clock;
+
+
+automaton Philo2h
+
+synclabs: takeleftphio2, eatphio2, releasephio2, endphio2;
+
+loc p21: while gamma2 - t2 >= 0 wait {}
+		 when t2 - eta2 <= 0 sync takeleftphio2 do {t2' = 0, htakeleftphio2' = 0} goto p22;
+
+loc p22: while -t2 >= -4 wait {}
+		 when t2 <= 3 sync eatphio2 do {t2' = 0, heatphio2' = 0} goto p23;
+
+loc p23: while -t2 >= -2 wait {}
+		 when t2 <= 1 sync releasephio2 do {hreleasephio2' = 0} goto p20;
+
+loc p20: while alpha2 - t2 >= 0 wait {}
+		 when ts2 - beta2 <= 0 sync endphio2 do {t2' = 0, ts2' = 0, hendphio2' = 0} goto p21;
+
+end
+
+
+var init: region;
+
+init:= loc[Philo2h] = p21
+		 & beta2 = 0 & ts2 = 0 & hreleasephio2 = 0 & hendphio2 = 0 & htakeleftphio2 = 0 & t2 = 0 & eta2 = 0 & heatphio2 = 0 & alpha2 = 0 & gamma2 = 0
+;

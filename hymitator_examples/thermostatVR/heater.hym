@@ -1,0 +1,22 @@
+var m, M, K, h: parameter;
+
+automaton heater
+
+var x: analog;
+	hturn_onH, hturn_offH: clock;
+
+synclabs: turn_onH, turn_offH;
+initially ini;
+
+loc off: while True wait {x'=-2}
+      when True sync turn_onH do {x'=x, hturn_onH'=0} goto on;	
+
+loc on: while True wait {x'=3}
+      when True sync turn_offH do {x'=x, hturn_onH'=0} goto off;
+
+end
+
+var init: region;
+init := loc[heater] = off & x = M & M = 20 & m = 16 & K = 2 & h = 1 & hturn_offH=0 & hturn_onH > hturn_offH;
+
+domain : x in [0,30];

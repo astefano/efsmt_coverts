@@ -1,0 +1,53 @@
+/***************************************************
+ * File automatically generated for file '/home/lastefan/Documents/verimag/timed-orch-bip/cav15/efsmt_coverts/hymitator_examples/thermostatVR/thermostat.hym'
+ * Reachability analysis
+ * 3 states and 3 transitions
+ * Program terminated after 0.003 second
+***************************************************/
+
+/*
+  DESCRIPTION OF THE STATES
+
+
+  STATE 0:
+  thermostat: l0 ==> 
+  x >= 16
+& hturn_on > hturn_off
+& hturn_off >= 0
+& m = 16
+& M = 20
+& K = 2
+& h = 1
+
+
+  STATE 1:
+  thermostat: l1 ==> 
+  20 >= x
+& hturn_on >= 0
+& hturn_off >= hturn_on
+& m = 16
+& M = 20
+& K = 2
+& h = 1
+
+
+  STATE 2:
+  thermostat: l0 ==> 
+  x >= 16
+& hturn_on >= hturn_off
+& hturn_off >= 0
+& m = 16
+& M = 20
+& K = 2
+& h = 1
+*/
+
+digraph G {
+  s0 -> s1 [label="turn_on"];
+  s1 -> s2 [label="turn_off"];
+  s2 -> s1 [label="turn_on"];
+
+  s0[fillcolor=red, style=filled, shape=Mrecord, label="s0|{l0}"];
+  s1[fillcolor=green, style=filled, shape=Mrecord, label="s1|{l1}"];
+  s2[fillcolor=red, style=filled, shape=Mrecord, label="s2|{l0}"];
+}

@@ -1,0 +1,35 @@
+(
+(
+Philo(0).p1 and Fork(0).f1 and (Philo(0).t <= gamma[0])
+and ( (Philo(1).p0 and (Philo(1).ts <= alpha[1]) and (Philo(1).ts - Philo(0).t <= alpha[1] - eta[0])) or (Philo(1).p1 and (Philo(1).t <= gamma[1]) and (Philo(1).t - Philo(0).t <= gamma[1] - eta[0])) or (Philo(1).p2 and (Philo(1).t <= 4) and (Philo(1).t - Philo(0).t <= 4 - eta[0]) ) or (Philo(1).p3 and (Philo(1).t <= 2)  and (Philo(1).t - Philo(0).t <= 2 - eta[0]) ) )
+)
+or
+(
+Philo(1).p1 and Fork(1).f1 and (Philo(1).t <= gamma[1])
+and ( (Philo(0).p0 and (Philo(0).ts <= alpha[0]) and (Philo(0).ts - Philo(1).t <= alpha[0] - eta[1])) or (Philo(0).p1 and (Philo(0).t <= gamma[0]) and (Philo(0).t - Philo(1).t <= gamma[0] - eta[1])) or (Philo(0).p2 and (Philo(0).t <= 3) and (Philo(0).t - Philo(1).t <= 3 - eta[1]) ) or (Philo(0).p3 and (Philo(0).t <= 3)  and (Philo(0).t - Philo(1).t <= 3 - eta[1]) ) )
+)
+or
+(
+Philo(0).p2 and Fork(1).f1 and (3 >= 2) and (Philo(0).t <= 3) 
+and ( (Philo(1).p0 and (Philo(1).ts <= alpha[1]) and (Philo(1).ts - Philo(0).t <= alpha[1] - 2)) or (Philo(1).p1 and (Philo(1).t <= gamma[1]) and (Philo(1).t - Philo(0).t <= gamma[1] - 2)) or (Philo(1).p2 and (Philo(1).t <= 4) and (Philo(1).t - Philo(0).t <= 4 - 2) ) or (Philo(1).p3 and (Philo(1).t <= 2)  and (Philo(1).t - Philo(0).t <= 2 - 2) ) )
+)
+or
+(
+Philo(1).p2 and Fork(0).f1 and (4 >= 3) and (Philo(1).t <= 4) 
+and ( (Philo(0).p0 and (Philo(0).ts <= alpha[0]) and (Philo(0).ts - Philo(1).t <= alpha[0] - 3)) or (Philo(0).p1 and (Philo(0).t <= gamma[0]) and (Philo(0).t - Philo(1).t <= gamma[0] - 3)) or (Philo(0).p2 and (Philo(0).t <= 3) and (Philo(0).t - Philo(1).t <= 3 - 3) ) or (Philo(0).p3 and (Philo(0).t <= 3)  and (Philo(0).t - Philo(1).t <= 3 - 3) ) )
+)
+or
+(
+Philo(0).p3 and Fork(0).f0 and Fork(1).f0 and (3 >= 2) and (Philo(0).t <= 3)  and (Philo(0).ts <= alpha[0])  and (Philo(0).ts - Philo(0).t <= alpha[0] - 2)
+and ( (Philo(1).p0 and (Philo(1).ts <= alpha[1]) and (Philo(1).ts - Philo(0).t <= alpha[1] - 2)) or (Philo(1).p1 and (Philo(1).t <= gamma[1]) and (Philo(1).t - Philo(0).t <= gamma[1] - 2)) or (Philo(1).p2 and (Philo(1).t <= 4) and (Philo(1).t - Philo(0).t <= 4 - 2) ) or (Philo(1).p3 and (Philo(1).t <= 2)  and (Philo(1).t - Philo(0).t <= 2 - 2) ) )
+)
+or
+(
+Philo(1).p3 and Fork(1).f0 and Fork(0).f0 and (2 >= 1) and (Philo(1).t <= 2)   and (Philo(1).ts <= alpha[1])  and (Philo(1).ts - Philo(1).t <= alpha[1] - 1)
+and ( (Philo(0).p0 and (Philo(0).ts <= alpha[0]) and (Philo(0).ts - Philo(1).t <= alpha[0] - 1)) or (Philo(0).p1 and (Philo(0).t <= gamma[0]) and (Philo(0).t - Philo(1).t <= gamma[0] - 1)) or (Philo(0).p2 and (Philo(0).t <= 3) and (Philo(0).t - Philo(1).t <= 3 - 1)) or (Philo(0).p3 and (Philo(0).t <= 3)  and (Philo(0).t - Philo(1).t <= 3 - 1) ) )
+)
+or
+(
+Philo(0).p0 and Philo(1).p0 and (Philo(0).ts <= alpha[0]) and (Philo(1).ts <= alpha[1]) and (Philo(0).ts - Philo(1).ts <= alpha[0] - beta[1]) and (Philo(1).ts - Philo(0).ts <= alpha[1] - beta[0])
+)
+)

@@ -1,0 +1,26 @@
+var
+	p: parameter;
+	hrestc, hcoolc, xc: clock;
+
+
+automaton controllerh
+
+synclabs: inic, coolc, restc;
+
+loc lc0: while True wait {}
+		 when True sync inic do {xc' = 0} goto lc1;
+
+loc lc1: while -xc >= -900 wait {}
+		 when xc = 900 sync coolc do {xc' = 0, hcoolc' = 0} goto lc2;
+
+loc lc2: while -xc >= -450 wait {}
+		 when xc = 450 sync restc do {xc' = 0, hrestc' = 0} goto lc1;
+
+end
+
+
+var init: region;
+
+init:= loc[controllerh] = lc0
+		 & xc = 0 & hcoolc = 0 & hrestc = 0
+;

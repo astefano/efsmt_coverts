@@ -1,0 +1,23 @@
+var
+	ct: parameter;
+	x_16, hcool_16, hrest_16: clock;
+
+
+automaton Rod_16h
+
+synclabs: cool_16, rest_16;
+
+loc l0_16: while True wait {}
+		 when -ct + x_16 >= 0 sync cool_16 do {hcool_16' = 0} goto l1_16;
+
+loc l1_16: while True wait {}
+		 when True sync rest_16 do {x_16' = 0, hrest_16' = 0} goto l0_16;
+
+end
+
+
+var init: region;
+
+init:= loc[Rod_16h] = l0_16
+		 & x_16 = 0 & hcool_16 = 0 & hrest_16 = 0
+;
