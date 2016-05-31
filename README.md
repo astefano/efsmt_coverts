@@ -21,15 +21,6 @@ Installation Requirements:
 - PPL (bugseng.com/products/ppl/‎), the platform dependent libppl_java.so, ppl_java.jar must be copied inside the "lib" folder
 
 =============
-Structure: 
-=============
---|
-  |- Examples: examples (tgc and tc are adapted from \cite{abbbc14} by replacing concrete values with parameters)
-  |------|- Imitator: 
-  |------|- interactionModels 
-  |- out: stores the generated files for Z3 and EFSMT
-
-=============
 How to test: 
 =============
 
@@ -38,8 +29,9 @@ The main program is src/PTAG2EF.scala. You can either pass the path to the Imita
 Example:
 
 lacra@lacra-VirtualBox:~/tools/efsmt_coverts-master$ sbt
+
 efsmt_coverts> run -ptaDir Imitator/abstract2 -imFile interactionModels/abstract2.im 
 
 
-
+Other examples are in imitator_examples. 
 
