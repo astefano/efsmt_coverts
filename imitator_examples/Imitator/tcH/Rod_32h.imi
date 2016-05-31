@@ -1,0 +1,23 @@
+var
+	ct: parameter;
+	x_32, hcool_32, hrest_32: clock;
+
+
+automaton Rod_32h
+
+synclabs: cool_32, rest_32;
+
+loc l0_32: while True wait {}
+		 when -ct + x_32 >= 0 sync cool_32 do {hcool_32' = 0} goto l1_32;
+
+loc l1_32: while True wait {}
+		 when True sync rest_32 do {x_32' = 0, hrest_32' = 0} goto l0_32;
+
+end
+
+
+var init: region;
+
+init:= loc[Rod_32h] = l0_32
+		 & x_32 = 0 & hcool_32 = 0 & hrest_32 = 0
+;

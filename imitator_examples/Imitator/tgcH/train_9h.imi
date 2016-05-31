@@ -1,0 +1,26 @@
+var
+	t0_9, t1_9, t2_9: parameter;
+	hepst_9, x_9, hat_9, het_9: clock;
+
+
+automaton train_9h
+
+synclabs: at_9, epst_9, et_9;
+
+loc far_9: while True wait {}
+		 when True sync at_9 do {x_9' = 0, hat_9' = 0} goto near_9;
+
+loc near_9: while t0_9 - x_9 >= 0 wait {}
+		 when -t1_9 + x_9 >= 0 sync epst_9 do {hepst_9' = 0} goto in_9;
+
+loc in_9: while t2_9 - x_9 >= 0 wait {}
+		 when True sync et_9 do {het_9' = 0} goto far_9;
+
+end
+
+
+var init: region;
+
+init:= loc[train_9h] = far_9
+		 & hepst_9 = 0 & het_9 = 0 & x_9 = 0 & hat_9 = 0
+;

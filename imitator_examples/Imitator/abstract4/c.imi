@@ -1,0 +1,22 @@
+var
+	q: parameter;
+	x: clock;
+
+automaton C1
+
+synclabs: a1,b;
+
+loc c0: while x <= 7 wait {}
+	when x >= q sync a1 do {x'=0} goto c1;
+
+loc c1: while x <= 3 wait {}
+	when True sync b do {x'=0} goto c0;
+
+end
+
+var init: region;
+
+init:=	loc[C1] = c0  &	
+	x = 0 
+;
+

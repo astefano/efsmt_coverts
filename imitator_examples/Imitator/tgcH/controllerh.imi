@@ -1,0 +1,29 @@
+var
+	c0, c1, c2: parameter;
+	hac, hrc, hlc, hec, z: clock;
+
+
+automaton controllerh
+
+synclabs: ac, lc, ec, rc;
+
+loc C0: while True wait {}
+		 when True sync ac do {z' = 0, hac' = 0} goto C1;
+
+loc C1: while c0 - z >= 0 wait {}
+		 when c1 - z = 0 sync lc do {hlc' = 0} goto C2;
+
+loc C2: while True wait {}
+		 when True sync ec do {z' = 0, hec' = 0} goto C3;
+
+loc C3: while c2 - z >= 0 wait {}
+		 when True sync rc do {hrc' = 0} goto C0;
+
+end
+
+
+var init: region;
+
+init:= loc[controllerh] = C0
+		 & hac = 0 & hlc = 0 & hrc = 0 & hec = 0 & z = 0
+;

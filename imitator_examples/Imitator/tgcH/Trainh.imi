@@ -1,0 +1,26 @@
+var
+	t0, t1, t2: parameter;
+	x, het0, hat0, heps: clock;
+
+
+automaton Trainh
+
+synclabs: at0, eps, et0;
+
+loc far: while True wait {}
+		 when True sync at0 do {x' = 0, hat0' = 0} goto near;
+
+loc near: while t0 - x >= 0 wait {}
+		 when -t1 + x >= 0 sync eps do {heps' = 0} goto in;
+
+loc in: while t2 - x >= 0 wait {}
+		 when True sync et0 do {het0' = 0} goto far;
+
+end
+
+
+var init: region;
+
+init:= loc[Trainh] = far
+		 & heps = 0 & x = 0 & hat0 = 0 & het0 = 0
+;

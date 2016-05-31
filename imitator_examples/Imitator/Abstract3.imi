@@ -1,0 +1,20 @@
+var
+	p: parameter;
+	x: clock;
+
+automaton C
+
+loc c0: while x <= 5 wait {}
+	when x >= 3 do {x'=0} goto c1;
+
+loc c1: while x <= p wait {}
+	when x >= 4 do {} goto c0;
+
+end
+
+var init: region;
+
+init:=	loc[C] = c0  &	
+	x = 0 
+;
+

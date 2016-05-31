@@ -1,0 +1,29 @@
+var
+	alpha5, beta5, gamma5, eta5: parameter;
+	t5, hendphio5, htakeleftphio5, heatphio5, hreleasephio5, ts5: clock;
+
+
+automaton Philo5h
+
+synclabs: takeleftphio5, eatphio5, releasephio5, endphio5;
+
+loc p51: while gamma5 - t5 >= 0 wait {}
+		 when t5 - eta5 <= 0 sync takeleftphio5 do {t5' = 0, htakeleftphio5' = 0} goto p52;
+
+loc p52: while -t5 >= -6 wait {}
+		 when t5 <= 3 sync eatphio5 do {t5' = 0, heatphio5' = 0} goto p53;
+
+loc p53: while -t5 >= -7 wait {}
+		 when t5 <= 5 sync releasephio5 do {hreleasephio5' = 0} goto p50;
+
+loc p50: while alpha5 - t5 >= 0 wait {}
+		 when ts5 - beta5 <= 0 sync endphio5 do {t5' = 0, ts5' = 0, hendphio5' = 0} goto p51;
+
+end
+
+
+var init: region;
+
+init:= loc[Philo5h] = p51
+		 & alpha5 = 0 & beta5 = 0 & t5 = 0 & ts5 = 0 & heatphio5 = 0 & hreleasephio5 = 0 & eta5 = 0 & htakeleftphio5 = 0 & hendphio5 = 0 & gamma5 = 0
+;

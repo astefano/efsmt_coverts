@@ -1,0 +1,29 @@
+var
+	g0, g1, g2: parameter;
+	y, hepsg, hlg, hrg: clock;
+
+
+automaton gateh
+
+synclabs: lg, epsg, rg;
+
+loc is_up: while True wait {}
+		 when True sync lg do {y' = 0, hlg' = 0} goto coming_down;
+
+loc coming_down: while g0 - y >= 0 wait {}
+		 when True sync epsg do {hepsg' = 0} goto is_down;
+
+loc is_down: while True wait {}
+		 when True sync rg do {y' = 0, hrg' = 0} goto going_up;
+
+loc going_up: while g1 - y >= 0 wait {}
+		 when -g2 + y >= 0 sync epsg do {hepsg' = 0} goto is_up;
+
+end
+
+
+var init: region;
+
+init:= loc[gateh] = is_up
+		 & hlg = 0 & hrg = 0 & hepsg = 0 & y = 0
+;

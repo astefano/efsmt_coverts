@@ -1,0 +1,22 @@
+var
+		htakefork1, hreleasefork1: clock;
+
+
+automaton Fork1h
+
+synclabs: takefork1, releasefork1;
+
+loc f10: while True wait {}
+		 when True sync takefork1 do {htakefork1' = 0} goto f11;
+
+loc f11: while True wait {}
+		 when True sync releasefork1 do {hreleasefork1' = 0} goto f10;
+
+end
+
+
+var init: region;
+
+init:= loc[Fork1h] = f10
+		 & htakefork1 = 0 & hreleasefork1 = 0
+;

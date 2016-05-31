@@ -1,0 +1,27 @@
+var
+	p, q: parameter;
+	x, y: clock;
+
+automaton C8
+
+synclabs: a;
+
+loc c0: while x <= p wait {}
+	when x >= p sync a do {} goto c1;
+
+loc c1: while y <= 10 wait {}
+	when y >= 0 sync a do {y'=0} goto c2;
+
+loc c2: while x <= q wait {}
+	when x >= 0 sync a do {x'=0} goto c0;
+
+
+end
+
+var init: region;
+
+init:=	loc[C8] = c0  &	
+	x = 0 
+        y = 0 
+;
+
