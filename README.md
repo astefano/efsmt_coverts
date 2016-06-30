@@ -16,9 +16,11 @@ Installation Requirements:
 
 - Z3 (z3.codeplex.com) 
 - EFSMT (http://www6.in.tum.de/~chengch/efsmt/)
-- IMITATOR (https://github.com/etienneandre/imitator)
+- IMITATOR (https://github.com/etienneandre/imitator) 
 - sbt (http://www.scala-sbt.org/) 
 - PPL (bugseng.com/products/ppl/‎), the platform dependent libppl_java.so, ppl_java.jar must be copied inside the "lib" folder; this is needed for the translation from a PTA C to C^h and for the computation of enabled. 
+
+(The binaries from EFSMT and IMITATOR should be placed in a folder "dependencies" if not specified as arguments, see below.)
 
 =============
 How to test: 
@@ -32,6 +34,12 @@ lacra@lacra-VirtualBox:~/tools/efsmt_coverts-master$ sbt
 
 efsmt_coverts> run -ptaDir Imitator/abstract2 -imFile interactionModels/abstract2.im 
 
-
 Other examples are in imitator_examples. 
+
+Arguments (showed by default with "-h"): 
+-ptaDir <...>
+-imFile <...> 
+-hc <...>
+-imiPath <...>
+-efPath <...>
 
