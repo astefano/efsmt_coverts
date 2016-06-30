@@ -18,7 +18,7 @@ Installation Requirements:
 - EFSMT (http://www6.in.tum.de/~chengch/efsmt/)
 - IMITATOR (https://github.com/etienneandre/imitator)
 - sbt (http://www.scala-sbt.org/) 
-- PPL (bugseng.com/products/ppl/‎), the platform dependent libppl_java.so, ppl_java.jar must be copied inside the "lib" folder
+- PPL (bugseng.com/products/ppl/‎), the platform dependent libppl_java.so, ppl_java.jar must be copied inside the "lib" folder; this is needed for the translation from a PTA C to C^h and for the computation of enabled. 
 
 =============
 How to test: 
