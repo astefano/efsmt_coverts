@@ -19,20 +19,22 @@ object PTAG2EF extends ZoneGraphVV {
     //runConfig(configFile)
     var badArgs = false
 
+    val ImitatorEx = "imitator_examples/Imitator"
 
-    //var ptaDir = "Imitator/Philos2"
-    //var ptaDir = "Imitator/abstract8"
-    //var ptaDir = "Imitator/abstract2"
-    var ptaDir = "Imitator/tgc"
+    //var ptaDir = ImitatorEx + "/Philos2"
+    //var ptaDir = ImitatorEx + "/abstract8"
+    var ptaDir = ImitatorEx + "/abstract2"
+    //var ptaDir = ImitatorEx + "/tgc"
     //var ptaDir = "Imitator/tc"
 
     //var imFile = "interactionModels/philos2.im"
     //var imFile = "interactionModels/abstract8.im"
-    //var imFile = "interactionModels/abstract2.im"
+    var imFile = "interactionModels/abstract2.im"
+    var im = mkIM(wd + imFile)
 
     //val im = mkIM(wd + imFile)
     def genIM_TGC(n: Int) = List.range(0,n).flatMap{i => List(List("ac", "at_"+i), List("ec", "et_"+i), List("lc", "lg"), List("rc", "rg"), List("epst_"+i))} :+ List("epsg")
-    var im = genIM_TGC(16).map{_.toSet}.toSet
+    //var im = genIM_TGC(16).map{_.toSet}.toSet
 
     def genIM_TC(n: Int) = List.range(0,n).flatMap{i => List(List("coolc", "cool_"+i), List("restc", "rest_0"))} 
     //var im = genIM_TC(32).map{_.toSet}.toSet

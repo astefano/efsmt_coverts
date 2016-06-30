@@ -17,7 +17,7 @@ trait genZ3EF {
   
   var DEP = "dependencies/"
 
-  var IMITATORPATH = DEP + "./IMITATOR64 "
+  var IMITATORPATH = DEP + "./imitator "
 
   var HYMITATORPATH = DEP + "./HYMITATOR "
 
@@ -27,7 +27,7 @@ trait genZ3EF {
   def runImitator(filePath: String) = { 
     //val cmd = ("/local/astefano/tools/imitator/./IMITATOR64 " + filePath + " -mode reachability -with-dot -with-log") 
       
-    val cmd = (IMITATORPATH + filePath + " -mode reachability -with-dot -with-log") 
+    val cmd = (IMITATORPATH + filePath + " -mode statespace -output-states  -output-graphics-source") 
 
     val out = new StringBuilder
     val err = new StringBuilder
@@ -41,12 +41,12 @@ trait genZ3EF {
 
     val all = out.toString + err.toString 
     //println(all)
-    if (err.toString != "") {
+    if (err.toString != "" && !err.toString.contains("Warning")) {
       println("imitator returned err: " + err.toString)
       err.toString
     }
     else 
-      filePath.replace("imi","states")
+      filePath.replace(".imi",".states")
   }
 
   def runHymitator(filePath: String) = {       
