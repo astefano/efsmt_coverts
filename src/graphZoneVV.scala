@@ -1813,7 +1813,7 @@ case class ZoneGraphVV() extends genZ3EF {
     (names + " = Ints('" + body + "')")    
   }
 
-  def genTCZ3(s: TAS, im0: List[List[String]], portDelays: Map[String, Int], dis0: String="", defaultZ3FileName: String = "defaultZ3.py", strengthen: String = "", defaultII: String = "True", isSym: Boolean = false) = {
+  def genTCZ3(s: TAS, im0: List[List[String]], portDelays: Map[String, Int], dis0: String="", defaultZ3FileName : String="", strengthen: String = "", defaultII: String = "True", isSym: Boolean = false) = {
     val galph = s.flatMap{ta => getAlph(ta)}.toSet
     //filter out any port which isn't in a ta in s
     val im = im0.map{alpha => alpha.filter(p => galph(p))}.filter(im => !im.isEmpty)
@@ -1926,7 +1926,6 @@ case class ZoneGraphVV() extends genZ3EF {
 	       (if (ISSEP) eqsC + "\n" + sep + "\n" + gihExt + "\n" + deadExt + "\n" + "print \"Solving deadExt:\" \n" + "getCEX(deadExt)\n\n\n" else "") 
             )
    }
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																	
     val posClks = "PosClks = And(" + clks.foldLeft("")((r, c) => r + ", " + c + " >= 0").drop(2) + ")"
     val n = s.length
     val indices = List.range(0, n)

@@ -30,7 +30,6 @@ object PTAG2EF extends ZoneGraphVV {
     //var imFile = "interactionModels/philos2.im"
     //var imFile = "interactionModels/abstract8.im"
     var imFile = "interactionModels/abstract2.im"
-    var im = mkIM(wd + imFile)
 
     //val im = mkIM(wd + imFile)
     def genIM_TGC(n: Int) = List.range(0,n).flatMap{i => List(List("ac", "at_"+i), List("ec", "et_"+i), List("lc", "lg"), List("rc", "rg"), List("epst_"+i))} :+ List("epsg")
@@ -42,13 +41,29 @@ object PTAG2EF extends ZoneGraphVV {
     var withHC = true
     //var withHC = false
 
-    if (args.size >= 2) {
-	ptaDir = args(0)
-        im = mkIM(wd + args(1))
-        if (args.size > 2)
-            withHC = (args(2) == "1")
+    val parser = new OptionParser("parse info: ") {      
+       opt("ptaDir", "ptaDir", "<ptaDir>", "ptaDir is the relative path to the dir with models", { 
+	 v: String => ptaDir = v
+       })
+
+       opt("imFile", "interactionModelFile", "<imFile>", "the relative path to the file with the interaction model", { 
+	 v: String =>  imFile = v
+       })
+
+       opt("hc", "historyClocks", "<hc>", "reach with history clocks", {
+	 v: String => withHC = true	 
+       })
+
+       opt("ip", "imitatorPath", "imitatorPath is the absolute path to Imitator (if not specified, by default, it's expected to be in folder dependencies)", { 
+	 v: String => IMITATORPATH = v
+       })
+
+       opt("efp", "EFSMTPath", "EFSMTPath is the absolute path to EFSMT (if not specified, by default, it's expected to be in folder dependencies)", { 
+	 v: String => IMITATORPATH = v
+       })
     }
 
+    var im = mkIM(wd + imFile)
     println("im = " + im)
 
     var z3CI = ""
