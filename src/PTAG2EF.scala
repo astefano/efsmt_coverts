@@ -23,17 +23,18 @@ object PTAG2EF extends ZoneGraphVV {
 
     //var ptaDir = ImitatorEx + "/Philos2"
     //var ptaDir = ImitatorEx + "/abstract8"
-    var ptaDir = ImitatorEx + "/abstract2"
-    //var ptaDir = ImitatorEx + "/tgc"
+    //var ptaDir = ImitatorEx + "/abstract2"
+    var ptaDir = ImitatorEx + "/tgc"
     //var ptaDir = "Imitator/tc"
 
+    var imFile = ""
     //var imFile = "interactionModels/philos2.im"
     //var imFile = "interactionModels/abstract8.im"
-    var imFile = "interactionModels/abstract2.im"
+    //var imFile = "interactionModels/abstract2.im"
 
     //val im = mkIM(wd + imFile)
     def genIM_TGC(n: Int) = List.range(0,n).flatMap{i => List(List("ac", "at_"+i), List("ec", "et_"+i), List("lc", "lg"), List("rc", "rg"), List("epst_"+i))} :+ List("epsg")
-    //var im = genIM_TGC(16).map{_.toSet}.toSet
+    var im = genIM_TGC(16).map{_.toSet}.toSet
 
     def genIM_TC(n: Int) = List.range(0,n).flatMap{i => List(List("coolc", "cool_"+i), List("restc", "rest_0"))} 
     //var im = genIM_TC(32).map{_.toSet}.toSet
@@ -59,7 +60,7 @@ object PTAG2EF extends ZoneGraphVV {
        })
 
        opt("efp", "EFSMTPath", "EFSMTPath is the absolute path to EFSMT (if not specified, by default, it's expected to be in folder dependencies)", { 
-	 v: String => IMITATORPATH = v
+	 v: String => EFSMTPATH = v
        })
 
        opt("h", "help", "prints this usage text", {println(
@@ -70,7 +71,7 @@ object PTAG2EF extends ZoneGraphVV {
 	 "\n \t -imFile <imFile> | --interactionModelFile <imFile>" +
 	 "\n \t \t the relative path to the file with the interaction model" + 
 	 "\n \t -hc <hc> | --historyClocks <hc>" +
-	 "\n \t \t reach with history clocks" + 
+	 "\n \t \t reachability with history clocks" + 
 	 "\n \t -ip <value> | --imitatorPath <value>" +
 	 "\n \t \t imitatorPath is the absolute path to Imitator (if not specified, by default, it's expected to be in folder dependencies)" +
 	 "\n \t -efp <value> | --EFSMTPath <value>" +
@@ -80,7 +81,7 @@ object PTAG2EF extends ZoneGraphVV {
 
     parser.parse(args)
 
-    var im = mkIM(wd + imFile)
+    //var im = mkIM(wd + imFile)
     println("im = " + im)
 
     var z3CI = ""

@@ -25,5 +25,5 @@ end
 var init: region;
 
 init:= loc[gateh] = is_up
-		 & hlg = 0 & hrg = 0 & hepsg = 0 & y = 0
+		 & y = 0 & hepsg = 0 & hrg = 0 & hlg = 0
 ;

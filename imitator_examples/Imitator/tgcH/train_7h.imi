@@ -22,5 +22,5 @@ end
 var init: region;
 
 init:= loc[train_7h] = far_7
-		 & x_7 = 0 & hepst_7 = 0 & het_7 = 0 & hat_7 = 0
+		 & x_7 = 0 & het_7 = 0 & hat_7 = 0 & hepst_7 = 0
 ;
