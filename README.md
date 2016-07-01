@@ -36,10 +36,27 @@ efsmt_coverts> run -ptaDir Imitator/abstract2 -imFile interactionModels/abstract
 
 Other examples are in imitator_examples. 
 
-Arguments (showed by default with "-h"): 
--ptaDir <...>
--imFile <...> 
--hc <...>
--imiPath <...>
--efPath <...>
+=============================
+Usage: parse info:  [options]
+=============================
+
+  	 -ptaDir <ptaDir> | --ptaDir <ptaDir>
+
+  	 	 ptaDir is the relative path to the dir with models
+
+  	 -imFile <imFile> | --interactionModelFile <imFile>
+
+  	 	 the relative path to the file with the interaction model
+
+  	 -hc <hc> | --historyClocks <hc>
+
+  	 	 reach with history clocks
+
+  	 -ip <value> | --imitatorPath <value>
+
+  	 	 imitatorPath is the absolute path to Imitator (if not specified, by default, it's expected to be in folder dependencies)
+
+  	 -efp <value> | --EFSMTPath <value>
+
+  	 	 EFSMTPath is the absolute path to EFSMT (if not specified, by default, it's expected to be in folder dependencies)
 
