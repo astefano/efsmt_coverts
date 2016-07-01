@@ -25,6 +25,10 @@ libraryDependencies += "org.scalatest" % "scalatest_2.9.1" % "1.6.1"
 
 libraryDependencies += "com.github.scala-incubator.io" %% "scala-io-file" % "0.4.2"
 
+libraryDependencies += "com.github.scopt" %% "scopt" % "3.5.0"
+
+resolvers += Resolver.sonatypeRepo("public")
+
 testOptions in Test += Tests.Argument("-oDF")
 
 // set the main Scala source directory to be <base>/src

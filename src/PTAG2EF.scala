@@ -61,7 +61,24 @@ object PTAG2EF extends ZoneGraphVV {
        opt("efp", "EFSMTPath", "EFSMTPath is the absolute path to EFSMT (if not specified, by default, it's expected to be in folder dependencies)", { 
 	 v: String => IMITATORPATH = v
        })
+
+       opt("h", "help", "prints this usage text", {println(
+	 "\n Usage: parse info:  [options]" + 
+	 "\n" + 
+	 "\n \t -ptaDir <ptaDir> | --ptaDir <ptaDir>" +
+	 "\n \t \t ptaDir is the relative path to the dir with models" +
+	 "\n \t -imFile <imFile> | --interactionModelFile <imFile>" +
+	 "\n \t \t the relative path to the file with the interaction model" + 
+	 "\n \t -hc <hc> | --historyClocks <hc>" +
+	 "\n \t \t reach with history clocks" + 
+	 "\n \t -ip <value> | --imitatorPath <value>" +
+	 "\n \t \t imitatorPath is the absolute path to Imitator (if not specified, by default, it's expected to be in folder dependencies)" +
+	 "\n \t -efp <value> | --EFSMTPath <value>" +
+	 "\n \t \t EFSMTPath is the absolute path to EFSMT (if not specified, by default, it's expected to be in folder dependencies)"
+       )})
     }
+
+    parser.parse(args)
 
     var im = mkIM(wd + imFile)
     println("im = " + im)
