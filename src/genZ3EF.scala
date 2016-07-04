@@ -23,11 +23,14 @@ trait genZ3EF {
 
   var EFSMTPATH = DEP + "./test "
 
+  val LIMIT_IMI = 50
 
   def runImitator(filePath: String) = { 
     //val cmd = ("/local/astefano/tools/imitator/./IMITATOR64 " + filePath + " -mode reachability -with-dot -with-log") 
       
-    val cmd = (IMITATORPATH + filePath + " -mode statespace -output-states  -output-graphics-source") 
+    val resultPath = filePath.replace(".imi","-statespace.states")
+    //println("[runimi] resultpath = " + resultPath)
+    val cmd = (IMITATORPATH + filePath + " -mode statespace -output-states  -output-graphics-source -states-limit " + LIMIT_IMI)
 
     val out = new StringBuilder
     val err = new StringBuilder
@@ -37,7 +40,11 @@ trait genZ3EF {
       (e: String) => err.append(e))
     
     cmd ! logger
-    //println("runImitator: cmd = " + cmd + "\n\n", 2)
+    //println("runImitator: cmd = " + cmd + "\n\n")
+
+    val n_states = out.toString.split("Number of states")(1).takeWhile(c => (c != '\n' && !c.isLetter)).replace(":", "").trim
+    if (n_states.toInt == LIMIT_IMI + 1)
+      println("[runImitator]: the default limit of states (" + n_states + ") has been reached; possible nontermination.")
 
     val all = out.toString + err.toString 
     //println(all)
@@ -46,7 +53,7 @@ trait genZ3EF {
       err.toString
     }
     else 
-      filePath.replace(".imi",".states")
+      resultPath
   }
 
   def runHymitator(filePath: String) = {       

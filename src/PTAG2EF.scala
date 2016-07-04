@@ -48,7 +48,10 @@ object PTAG2EF extends ZoneGraphVV {
        })
 
        opt("imFile", "interactionModelFile", "<imFile>", "the relative path to the file with the interaction model", { 
-	 v: String =>  imFile = v
+	 v: String =>  {
+	   imFile = v
+	   im = mkIM(wd + imFile)
+	 }
        })
 
        opt("hc", "historyClocks", "<hc>", "reach with history clocks", {
@@ -62,6 +65,10 @@ object PTAG2EF extends ZoneGraphVV {
        opt("efp", "EFSMTPath", "EFSMTPath is the absolute path to EFSMT (if not specified, by default, it's expected to be in folder dependencies)", { 
 	 v: String => EFSMTPATH = v
        })
+
+      opt("ls", "limStates", "limStates is the limit of states during the computation of reach; it is passed as value to the option states-limit in Imitator.", {
+	v: String => LIMIT_IMI = v.toInt
+      })
 
        opt("h", "help", "prints this usage text", {println(
 	 "\n Usage: parse info:  [options]" + 
@@ -81,7 +88,6 @@ object PTAG2EF extends ZoneGraphVV {
 
     parser.parse(args)
 
-    //var im = mkIM(wd + imFile)
     println("im = " + im)
 
     var z3CI = ""
@@ -212,6 +218,7 @@ object PTAG2EF extends ZoneGraphVV {
     val tasH = if (withHC) tas.map{ta => getTAH(ta)} else tas
     val deltas = Map[String,Int]()
     println("#deltas = " + deltas)
+
     //transf im to a list of lists for genTCZ3
     val imL = im.map{_.toList}.toList
     //TODO translate absReach to Z3
@@ -222,6 +229,13 @@ object PTAG2EF extends ZoneGraphVV {
     val z3Txt = genZ3forPTA(tasH, imL, deltas, defaultZ3FileName="defaultZ3.py", defaultInvs=outZ3, paramsS = paramSet)(withHC)
     //val z3File = tasName + "-outZ3-" + date + ".py"
     val z3File = ptaDir.drop(9) + "-outZ3-" + date + ".py"      
+
+    val (resultZ3, errZ3) = runZ3(z3File)	
+    if (errZ3.contains("error") || errZ3.contains("Error")) {
+      println("Z3 err: " + errZ3 + "; exit.")
+      System.exit(1)
+    }
+    println("resultZ3 = " + resultZ3)
 
     val efFilePath = wd + efFile
     //addEFConds(efFilePath, paramsVals)

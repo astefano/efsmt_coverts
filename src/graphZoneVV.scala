@@ -151,7 +151,7 @@ case class ZoneGraphVV() extends genZ3EF {
   def getSink(t: Transition) = t._7
 
 
-  /** getters from TAS **/
+  /** getters from TAS */
   def getLocsS(s: TAS) = s.flatMap{ta => getLocs(ta)}
   def getVarsS(s: TAS) = s.flatMap{ta => getVars(ta).keySet}
   def getClksS(s: TAS) = s.flatMap{ta => getClks(ta)}
@@ -1887,8 +1887,14 @@ case class ZoneGraphVV() extends genZ3EF {
   def genZ3forPTA(s: TAS, im0: List[List[String]], portDelays: Map[String, Int], dis0: String="", defaultZ3FileName: String = "defaultZ3.py", strengthen: String = "True", defaultInvs: String = "True", isSym: Boolean = false, safe: String = "True", paramsS: Set[String] = Set())(implicit withHistory: Boolean = true) = {
     val galph = s.flatMap{ta => getAlph(ta)}.toSet
     //filter out any port which isn't in a ta in s
-    val im = im0.map{alpha => alpha.filter(p => galph(p))}.filter(im => !im.isEmpty)
-    println("im = " + im)
+    val im = im0.map{
+      alpha => 
+	alpha.filter{
+	  p => 
+	    galph(p)
+	}
+    }.filter(im => !im.isEmpty)
+    //println("im = " + im)
     val ims = im.map{alpha => alpha.toSet}.toSet
     val localInvNames = s.map{ta => "ci" + getName(ta)}.reduce(_+ ", "+_)
     val notAt2locs = NotAt2LocsPref + "all = And(" + s.map{ta => NotAt2LocsPref + getName(ta)}.reduce(_+ ", "+_) + ")"
@@ -2635,7 +2641,7 @@ case class ZoneGraphVV() extends genZ3EF {
     (r, updv)
   }
 
-  /** i assume taFile contains only one TA; it's name is in the system def.*/
+  // i assume taFile contains only one TA; it's name is in the system def.
   def loadTA(taFile: String) : TA = {
     //val in:Input = Resource.fromFile(taFile)
     //val stringFromIn = in.slurpString(Codec.UTF8)
@@ -2736,11 +2742,21 @@ case class ZoneGraphVV() extends genZ3EF {
 
   def mkVarDeclImi(decl: String) = "var\n\t" + decl + "\n" 
 
-  def mkTransImi(source: String, inv0: String, a: String, g0: String, r: String, sink: String) = {
+  /** Imitator syntax doesn't allow loc l: x; loc l: y. Instead, loc l: x; y. */
+  def mkTransImi0(source: String, inv0: String, a: String, g0: String, r: String, sink: String) = {
     val inv = if (inv0.trim.equals("true")) "True" else inv0
     val g = if (g0.trim.equals("true") || g0.trim.equals("")) "True" else g0
     "\nloc " + source + ": while " + inv + " wait {}\n" +
 	"\t\t when " + g + " sync " + a + " do {" + r + "} goto " + sink + ";\n"
+  }
+
+  def mkGuardImi(g0: String) =  if (g0.trim.equals("true") || g0.trim.equals("")) "True" else g0
+
+  // l is a list of (source, a, g, r, sink)
+  def mkTransImi(source: String, inv0: String, l: List[(String, String, String, String, String)]) = {
+    val inv = if (inv0.trim.equals("true")) "True" else inv0
+    "\nloc " + source + ": while " + inv + " wait {}\n" +
+	l.map(li => "\t\t when " + mkGuardImi(li._3) + " sync " + li._2 + " do {" + li._4 + "} goto " + li._5 + ";\n").reduce(_+_)
   }
 
   def mkResetImi(r: Reset, clksM: ClkMap) =  if (r.isEmpty) "" else r.map{el => clksM(el._1) + "' = " + el._2}.reduceLeft(_ + ", " +_)
@@ -2762,7 +2778,7 @@ case class ZoneGraphVV() extends genZ3EF {
     val idIni = "id" + locsI(iniL)
     val acts = getAlph(ta).reduceLeft(_+", "+_)
 
-    val  transList = trans.map{
+    val  transList = trans.toList.map{
       t => 
 	val source = getSource(t)
 	val sink = getSink(t)
@@ -2779,8 +2795,8 @@ case class ZoneGraphVV() extends genZ3EF {
 	val gt = if (g =="") mkUppaalExpr(gv) else if (gv =="") g else g + " and " + mkUppaalExpr(gv)
 	val r = getReset(t)
 	val a = getAct(t) 
-	mkTransImi(source, invs(source), a, gt, mkResetImi(r, clksM), sink)
-    }.reduceLeft(_+_)
+	(source, a, gt, mkResetImi(r, clksM), sink)
+    }.groupBy(_._1).map{l => mkTransImi(l._1, invs(l._1), l._2)}.reduceLeft(_+_)
  
     val varDecl = if (vars.isEmpty) "" else vars.map{vv => vv._1 + getVarValImi(vv._2) + ","}.reduceLeft(_+_) + ": parameter;\n"
     val paramDecl = if (params.isEmpty) "" else params.reduceLeft(_+ ", " + _) + ": parameter;\n"
@@ -2810,7 +2826,7 @@ case class ZoneGraphVV() extends genZ3EF {
 	      l =>
 		val lt = l.trim
 		if (lt != "\n" && lt != "") {
-		  val interaction = l.split(" , ").map{_.trim}.toSet
+		  val interaction = l.split(",").map{_.trim}.toSet
 		  im += interaction
 		}
 	    }
@@ -2818,7 +2834,7 @@ case class ZoneGraphVV() extends genZ3EF {
     im
   }
 
-  /** load a PTA from an imi file; i assume 1 PTA per file*/
+  // load a PTA from an imi file; i assume 1 PTA per file
   def loadImi(imiFile: String) : PTA = {
      val file = Path.fromString(imiFile)
      val lines = file.lines()

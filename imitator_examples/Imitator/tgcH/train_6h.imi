@@ -7,11 +7,11 @@ automaton train_6h
 
 synclabs: at_6, epst_6, et_6;
 
-loc far_6: while True wait {}
-		 when True sync at_6 do {x_6' = 0, hat_6' = 0} goto near_6;
-
 loc near_6: while t0_6 - x_6 >= 0 wait {}
 		 when -t1_6 + x_6 >= 0 sync epst_6 do {hepst_6' = 0} goto in_6;
+
+loc far_6: while True wait {}
+		 when True sync at_6 do {x_6' = 0, hat_6' = 0} goto near_6;
 
 loc in_6: while t2_6 - x_6 >= 0 wait {}
 		 when True sync et_6 do {het_6' = 0} goto far_6;
@@ -22,5 +22,5 @@ end
 var init: region;
 
 init:= loc[train_6h] = far_6
-		 & het_6 = 0 & x_6 = 0 & hepst_6 = 0 & hat_6 = 0
+		 & hepst_6 = 0 & het_6 = 0 & hat_6 = 0 & x_6 = 0
 ;

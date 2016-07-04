@@ -7,14 +7,14 @@ automaton train_14h
 
 synclabs: at_14, epst_14, et_14;
 
+loc in_14: while t2_14 - x_14 >= 0 wait {}
+		 when True sync et_14 do {het_14' = 0} goto far_14;
+
 loc far_14: while True wait {}
 		 when True sync at_14 do {x_14' = 0, hat_14' = 0} goto near_14;
 
 loc near_14: while t0_14 - x_14 >= 0 wait {}
 		 when -t1_14 + x_14 >= 0 sync epst_14 do {hepst_14' = 0} goto in_14;
-
-loc in_14: while t2_14 - x_14 >= 0 wait {}
-		 when True sync et_14 do {het_14' = 0} goto far_14;
 
 end
 
@@ -22,5 +22,5 @@ end
 var init: region;
 
 init:= loc[train_14h] = far_14
-		 & hepst_14 = 0 & hat_14 = 0 & x_14 = 0 & het_14 = 0
+		 & het_14 = 0 & hepst_14 = 0 & x_14 = 0 & hat_14 = 0
 ;
