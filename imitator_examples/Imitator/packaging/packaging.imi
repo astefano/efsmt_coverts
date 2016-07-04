@@ -1,0 +1,21 @@
+var
+	y : clock;
+
+automaton Packaging
+
+synclabs: pack, resolve, errp;
+
+loc p0: while y <= 5 wait {}
+	when True sync pack do {y'=0} goto p0;
+	when True sync errp do {y'=0} goto p1;
+
+loc p1: while y <= 50 wait {}
+	when y >= 10 sync resolve do {y'=0} goto p0;
+
+end
+
+var init: region;
+
+init:=	loc[Packaging] = p0 
+;
+

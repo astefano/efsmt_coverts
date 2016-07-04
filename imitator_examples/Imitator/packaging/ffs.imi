@@ -1,0 +1,25 @@
+var
+	a, b: parameter;
+	x: clock;
+
+automaton FFS
+
+synclabs: fill,ship, resume, err;
+
+loc f0: while True wait {}
+	when True sync fill do {x'=0} goto f1;
+
+loc f1: while x <= 2 wait {}
+	when True sync err do {x'=0} goto f2;
+	when x <= 1 sync ship do {x'=0} goto f0;
+
+loc f2: while x <= b wait {}
+	when x >= a sync resume do {x'=0} goto f1;
+
+end
+
+var init: region;
+
+init:=	loc[FFS] = f0  &	
+	x = 0
+; 

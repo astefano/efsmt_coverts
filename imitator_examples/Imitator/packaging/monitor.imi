@@ -1,0 +1,38 @@
+var
+
+automaton Monitor
+
+synclabs: packm, fillm, shipm, errm, resolvem, resumem;
+
+loc m0: while True wait {}
+	when True sync fillm do {} goto m1;
+	when True sync packm do {} goto m0;
+
+loc m1: while True wait {}
+	when True sync errm do {} goto m2;
+	when True sync packm do {} goto m1;
+	when True sync shipm do {} goto m0;
+
+loc m2: while True wait {}
+	when True sync resumem do {} goto m3;
+	when True sync resolvem do {} goto m1;
+
+loc m3: while True wait {}
+	when True sync resolvem do {} goto m1;
+	when True sync shipm do {} goto risk;
+
+loc risk: while True wait {}
+	when True sync resolvem do {} goto risk;
+	when True sync shipm do {} goto risk;
+	when True sync fillm do {} goto risk;
+	when True sync resumem do {} goto risk;	
+	when True sync packm do {} goto risk;
+	when True sync errm do {} goto risk;
+
+end
+
+var init: region;
+
+init:=	loc[Monitor] = m0 
+;
+
