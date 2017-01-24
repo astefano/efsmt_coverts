@@ -23,7 +23,7 @@ trait genZ3EF {
 
   var EFSMTPATH = DEP + "./test "
 
-  val LIMIT_IMI = 50
+  var LIMIT_IMI = 50
 
   def runImitator(filePath: String) = { 
     //val cmd = ("/local/astefano/tools/imitator/./IMITATOR64 " + filePath + " -mode reachability -with-dot -with-log") 
