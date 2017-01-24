@@ -32,7 +32,7 @@ Example:
 
 lacra@lacra-VirtualBox:~/tools/efsmt_coverts-master$ sbt
 
-efsmt_coverts> run -ptaDir Imitator/abstract2 -imFile interactionModels/abstract2.im 
+efsmt_coverts> run -ptaDir imitator_examples/Imitator/abstract2 -imFile imitator_examples/interactionModels/abstract2.im 
 
 Other examples are in imitator_examples. 
 
