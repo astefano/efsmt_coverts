@@ -14,7 +14,7 @@ The prototype uses EFSMT and Z3 to return either \texttt{unsat} or a parameter a
 Installation Requirements: 
 ==========================
 
-- Z3 (z3.codeplex.com) 
+- Z3 with its python binding (z3.codeplex.com) 
 - EFSMT (http://www6.in.tum.de/~chengch/efsmt/)
 - IMITATOR (https://github.com/etienneandre/imitator) 
 - sbt (http://www.scala-sbt.org/) 
