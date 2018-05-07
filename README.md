@@ -4,7 +4,7 @@ Short Description:
 This is a Scala prototype for synthesising parameters for parametric timed systems. The prototype takes as input:
 - components $\cn_i$ of a system as PTAs in Imitator, 
 - a file describing the interactions $\gamma$ (each interaction is on one line with actions being separated by comma), 
-- a state safety formula (if not specified, by default deadlock freeness as defined in \cite{tripakis93:progress}). 
+- a state safety formula (if not specified, by default deadlock-freedom as defined in "_S. Tripakis. Verifying Progress in Timed Systems. In ARTS'99_". 
 Constraints on parameters are specified directly in the Imitator files. 
 
 The prototype uses EFSMT and Z3 to return either \texttt{unsat} or a parameter assignment under which the safety property holds. The prototype reuses functionalities from the prototype in \cite{abbbc14} to compute $\iim(\gamma)$ and $\eqs(\gamma)$. The computation of $\sep(\gamma)$ by means of the observer construction is not implemented yet. To generate $\ic(\cn_i^h)$ we use Imitator. From all invariants we assemble $\isyst$ which with the parameter constraints and the safety formula are fed to EFSMT \cite{efsmt} and Z3 \cite{z3}. We did not explicitly do quantifier elimination but instead quantified universally all history clocks. For the extraction of parameter constraints we used the tactic $\texttt{qe2}$ in Z3. 
@@ -29,7 +29,7 @@ The main program is src/PTAG2EF.scala. You can either pass the path to the Imita
 
 Example:
 
-lacra@lacra-VirtualBox:~/tools/efsmt_coverts-master$ sbt
+x@y:~/tools/efsmt_coverts-master$ sbt
 
 efsmt_coverts> run -ptaDir imitator_examples/Imitator/abstract2 -imFile imitator_examples/interactionModels/abstract2.im 
 
