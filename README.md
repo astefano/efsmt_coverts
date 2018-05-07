@@ -1,6 +1,5 @@
-===================
-Short Description: 
-===================
+Short Description:
+===
 
 This is a Scala prototype for synthesising parameters for parametric timed systems. The prototype takes as input:
 - components $\cn_i$ of a system as PTAs in Imitator, 
@@ -10,9 +9,9 @@ Constraints on parameters are specified directly in the Imitator files.
 
 The prototype uses EFSMT and Z3 to return either \texttt{unsat} or a parameter assignment under which the safety property holds. The prototype reuses functionalities from the prototype in \cite{abbbc14} to compute $\iim(\gamma)$ and $\eqs(\gamma)$. The computation of $\sep(\gamma)$ by means of the observer construction is not implemented yet. To generate $\ic(\cn_i^h)$ we use Imitator. From all invariants we assemble $\isyst$ which with the parameter constraints and the safety formula are fed to EFSMT \cite{efsmt} and Z3 \cite{z3}. We did not explicitly do quantifier elimination but instead quantified universally all history clocks. For the extraction of parameter constraints we used the tactic $\texttt{qe2}$ in Z3. 
 
-==========================
+
 Installation Requirements: 
-==========================
+===
 
 - Z3 with its python binding (z3.codeplex.com) 
 - EFSMT (http://www6.in.tum.de/~chengch/efsmt/)
@@ -22,9 +21,9 @@ Installation Requirements:
 
 (The binaries from EFSMT and IMITATOR should be placed in a folder "dependencies" if not specified as arguments, see below.)
 
-=============
+
 How to test: 
-=============
+===
 
 The main program is src/PTAG2EF.scala. You can either pass the path to the Imitator files and to the interaction model as arguments or directly modify PTAG2EF.scala itself (examples are commented). Then simply run it from sbt.
 
@@ -36,9 +35,9 @@ efsmt_coverts> run -ptaDir imitator_examples/Imitator/abstract2 -imFile imitator
 
 Other examples are in imitator_examples. 
 
-=============================
+
 Usage: parse info:  [options]
-=============================
+===
 
   	 -ptaDir <ptaDir> | --ptaDir <ptaDir>
 
